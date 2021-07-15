@@ -442,32 +442,12 @@ server &#123;
               <article class="comments" id="comments">
                 
                 
-  <div id="remark42"></div>
+  <div id="twikoo"></div>
   <script type="text/javascript">
-    Fluid.utils.waitElementVisible('remark42', function() {
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema !== 'light' && schema !== 'dark') {
-        schema = 'light';
-      }
-      var remark_config = {
-        host: 'http://42.192.68.190:8889',
-        site_id: 'qiupo',
-        components: ['embed'],
-        url: '/2020/11/22/browser/%E8%B7%A8%E5%9F%9F/',
-        max_shown_comments: '10',
-        theme: schema,
-        page_title: '浏览器同源策略',
-        locale: 'zh'
-      };
-
-      (function (c) {
-        for (var i = 0; i < c.length; i++) {
-          var d = document, s = d.createElement('script');
-          s.src = remark_config.host + '/web/' + c[i] + '.js';
-          s.defer = true;
-          (d.head || d.body).appendChild(s);
-        }
-      })(remark_config.components || [ 'embed' ]);
+    Fluid.utils.waitElementVisible('twikoo', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@0.1.15/dist/twikoo.all.min.js', function () {
+        twikoo.init({ envId: 'https://blog-talk-e49bh307m-qiupo.vercel.app/' })
+      });
     });
   </script>
   <noscript>Please enable JavaScript to view the comments</noscript>
@@ -633,6 +613,13 @@ server &#123;
 
 
 
+
+  <script  src="https://cdn.staticfile.org/mermaid/8.8.2/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 
