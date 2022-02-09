@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicont.png">
+  <link rel="icon" type="image/png" href="/img/favicont.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="秋坡博客">
+  <meta name="author" content="Taoqiupo">
+  <meta name="keywords" content="">
+  <title>奇奇怪怪的题目(1) - qiupoBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":50,"cursorChar":"🇨🇳","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>QiuPo'Park</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/moonbg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="奇奇怪怪的题目(1)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Taoqiupo
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-01 10:12" pubdate>
+        2022年2月1日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">奇奇怪怪的题目(1)</h1>
+            
+            <div class="markdown-body">
+              <p>#奇奇怪怪的题目第一弹</p>
+<h2 id="Proxy相对于Objec-defineProperty的优势？区别？"><a href="#Proxy相对于Objec-defineProperty的优势？区别？" class="headerlink" title="Proxy相对于Objec.defineProperty的优势？区别？"></a>Proxy相对于Objec.defineProperty的优势？区别？</h2><h2 id="常见的dom操作有哪些？"><a href="#常见的dom操作有哪些？" class="headerlink" title="常见的dom操作有哪些？"></a>常见的dom操作有哪些？</h2><h2 id="页面中哪些时候会进行重绘重排"><a href="#页面中哪些时候会进行重绘重排" class="headerlink" title="页面中哪些时候会进行重绘重排"></a>页面中哪些时候会进行重绘重排</h2><h2 id="Webpack的原理？有哪些好处？"><a href="#Webpack的原理？有哪些好处？" class="headerlink" title="Webpack的原理？有哪些好处？"></a>Webpack的原理？有哪些好处？</h2><h2 id="首屏加载优化方案？"><a href="#首屏加载优化方案？" class="headerlink" title="首屏加载优化方案？"></a>首屏加载优化方案？</h2><h2 id="有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？"><a href="#有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？" class="headerlink" title="有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？"></a>有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？</h2><p><a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/performance/rendering/optimize-javascript-execution?hl=zh-cn">一个优化文章</a></p>
+<h2 id="重绘和回流-是什么，在什么时候发生，机制是什么，如果减少？"><a href="#重绘和回流-是什么，在什么时候发生，机制是什么，如果减少？" class="headerlink" title="重绘和回流 是什么，在什么时候发生，机制是什么，如果减少？"></a>重绘和回流 是什么，在什么时候发生，机制是什么，如果减少？</h2><h2 id="cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web-SQL又是什么"><a href="#cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web-SQL又是什么" class="headerlink" title="cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web SQL又是什么?"></a>cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web SQL又是什么?</h2><h2 id="vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？"><a href="#vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？" class="headerlink" title="vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？"></a>vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？</h2><h2 id="vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？"><a href="#vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？" class="headerlink" title="vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？"></a>vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？</h2><h2 id="浏览器工作原理–浏览器如何渲染页面？"><a href="#浏览器工作原理–浏览器如何渲染页面？" class="headerlink" title="浏览器工作原理–浏览器如何渲染页面？"></a>浏览器工作原理–浏览器如何渲染页面？</h2><h2 id="什么情况会导致内存泄漏？"><a href="#什么情况会导致内存泄漏？" class="headerlink" title="什么情况会导致内存泄漏？"></a>什么情况会导致内存泄漏？</h2><h2 id="浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？"><a href="#浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？" class="headerlink" title="浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？"></a>浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？</h2><h2 id="浏览器兼容性问题及其解决方法"><a href="#浏览器兼容性问题及其解决方法" class="headerlink" title="浏览器兼容性问题及其解决方法"></a>浏览器兼容性问题及其解决方法</h2><h2 id="AMD和CMD和commonjs的区别"><a href="#AMD和CMD和commonjs的区别" class="headerlink" title="AMD和CMD和commonjs的区别"></a>AMD和CMD和commonjs的区别</h2><h2 id="什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化"><a href="#什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化" class="headerlink" title="什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化"></a>什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化</h2><h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><h2 id="原型和原型链的理解"><a href="#原型和原型链的理解" class="headerlink" title="原型和原型链的理解"></a>原型和原型链的理解</h2><h2 id="vue和react的区别"><a href="#vue和react的区别" class="headerlink" title="vue和react的区别"></a>vue和react的区别</h2><h2 id="react中setState后发生了什么？"><a href="#react中setState后发生了什么？" class="headerlink" title="react中setState后发生了什么？"></a>react中setState后发生了什么？</h2><h2 id="shouldComponentUpdate作用"><a href="#shouldComponentUpdate作用" class="headerlink" title="shouldComponentUpdate作用"></a>shouldComponentUpdate作用</h2><h2 id="vue的keepAlive是什么"><a href="#vue的keepAlive是什么" class="headerlink" title="vue的keepAlive是什么"></a>vue的keepAlive是什么</h2><h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><h2 id="防抖和节流的使用场景和手写"><a href="#防抖和节流的使用场景和手写" class="headerlink" title="防抖和节流的使用场景和手写"></a>防抖和节流的使用场景和手写</h2><h2 id="Promise有何见解，手写一个包含promise-all-race-allSettled"><a href="#Promise有何见解，手写一个包含promise-all-race-allSettled" class="headerlink" title="Promise有何见解，手写一个包含promise.all race allSettled"></a>Promise有何见解，手写一个包含promise.all race allSettled</h2><h2 id="跨域和他的几个解决方法"><a href="#跨域和他的几个解决方法" class="headerlink" title="跨域和他的几个解决方法"></a>跨域和他的几个解决方法</h2><h2 id="javascript的值引用和值类型？涉及的深浅拷贝"><a href="#javascript的值引用和值类型？涉及的深浅拷贝" class="headerlink" title="javascript的值引用和值类型？涉及的深浅拷贝"></a>javascript的值引用和值类型？涉及的深浅拷贝</h2><h2 id="js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？"><a href="#js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？" class="headerlink" title="js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？"></a>js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？</h2><h2 id="http请求有哪些区别？是个什么流程，中间经过了哪些步骤？"><a href="#http请求有哪些区别？是个什么流程，中间经过了哪些步骤？" class="headerlink" title="http请求有哪些区别？是个什么流程，中间经过了哪些步骤？"></a>http请求有哪些区别？是个什么流程，中间经过了哪些步骤？</h2><h2 id="tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？"><a href="#tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？" class="headerlink" title="tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？"></a>tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？</h2><h2 id="tcp和udp有啥区别？应用场景分别是什么？"><a href="#tcp和udp有啥区别？应用场景分别是什么？" class="headerlink" title="tcp和udp有啥区别？应用场景分别是什么？"></a>tcp和udp有啥区别？应用场景分别是什么？</h2><h2 id="websocket是怎么实现的？"><a href="#websocket是怎么实现的？" class="headerlink" title="websocket是怎么实现的？"></a>websocket是怎么实现的？</h2><h2 id="http1-0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？"><a href="#http1-0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？" class="headerlink" title="http1.0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？"></a>http1.0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？</h2><h2 id="304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？"><a href="#304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？" class="headerlink" title="304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？"></a>304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？</h2><h2 id="http常用的请求头有哪些？"><a href="#http常用的请求头有哪些？" class="headerlink" title="http常用的请求头有哪些？"></a>http常用的请求头有哪些？</h2><h2 id="fetch请求两次是为什么？OPTIONS预检请求是什么？"><a href="#fetch请求两次是为什么？OPTIONS预检请求是什么？" class="headerlink" title="fetch请求两次是为什么？OPTIONS预检请求是什么？"></a>fetch请求两次是为什么？OPTIONS预检请求是什么？</h2><h2 id="SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？"><a href="#SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？" class="headerlink" title="SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？"></a>SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？</h2><h2 id="ajax的优缺点，原理？"><a href="#ajax的优缺点，原理？" class="headerlink" title="ajax的优缺点，原理？"></a>ajax的优缺点，原理？</h2><h2 id="axios-原理是什么？"><a href="#axios-原理是什么？" class="headerlink" title="axios 原理是什么？"></a>axios 原理是什么？</h2><h2 id="如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范"><a href="#如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范" class="headerlink" title="如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范"></a>如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范</h2><h2 id="网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？"><a href="#网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？" class="headerlink" title="网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？"></a>网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？</h2><p><a target="_blank" rel="noopener" href="https://cshihong.github.io/2019/05/14/%E7%BD%91%E7%BB%9C%E5%B1%82-TCP-UDP-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%E5%8E%9F%E7%90%86/">网络层(TCP/UDP)攻击与防御原理</a></p>
+<h2 id="应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？"><a href="#应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？" class="headerlink" title="应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？"></a>应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？</h2><p><a target="_blank" rel="noopener" href="https://cshihong.github.io/2019/05/14/%E5%BA%94%E7%94%A8%E5%B1%82-DNS-HTTP-HTTPS-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%E5%8E%9F%E7%90%86/">应用层(DNS/HTTP/HTTPS)攻击与防御原理</a></p>
+<h2 id="SPA应用首屏加载慢的优化方案"><a href="#SPA应用首屏加载慢的优化方案" class="headerlink" title="SPA应用首屏加载慢的优化方案"></a>SPA应用首屏加载慢的优化方案</h2><h2 id="css中link和-import的区别？"><a href="#css中link和-import的区别？" class="headerlink" title="css中link和@import的区别？"></a>css中link和@import的区别？</h2><h2 id="bind，apply和call的区别，手写一个"><a href="#bind，apply和call的区别，手写一个" class="headerlink" title="bind，apply和call的区别，手写一个"></a>bind，apply和call的区别，手写一个</h2><h2 id="this的指向问题？他的本质是什么？EC-AO-VO，浏览器底层是如何进行变量制造和上下文处理的？作用域链是什么？"><a href="#this的指向问题？他的本质是什么？EC-AO-VO，浏览器底层是如何进行变量制造和上下文处理的？作用域链是什么？" class="headerlink" title="this的指向问题？他的本质是什么？EC AO VO，浏览器底层是如何进行变量制造和上下文处理的？作用域链是什么？"></a>this的指向问题？他的本质是什么？EC AO VO，浏览器底层是如何进行变量制造和上下文处理的？作用域链是什么？</h2><h2 id="vue中的data为什么使用return直接data对象为什么不行"><a href="#vue中的data为什么使用return直接data对象为什么不行" class="headerlink" title="vue中的data为什么使用return直接data对象为什么不行"></a>vue中的data为什么使用return直接data对象为什么不行</h2><p><em>data 必须是一个函数</em><br>&nbsp;&nbsp;当我们定义这个<code>&lt;button-counter&gt;</code>组件时，你可能会发现它的 data 并不是像这样直接提供一个对象：</p>
+<pre><code class="hljs haskell"><span class="hljs-class"><span class="hljs-keyword">data</span>: &#123;</span>
+<span class="hljs-class">  <span class="hljs-title">count</span>: 0</span>
+<span class="hljs-class">&#125;</span></code></pre>
+<p>取而代之的是，一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝：</p>
+<pre><code class="hljs ada">data: <span class="hljs-keyword">function</span> <span class="hljs-title"></span>() &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-type">&#123;</span>
+    count: <span class="hljs-number">0</span>
+  &#125;
+&#125;</code></pre>
+<p>如果 Vue 没有这条规则，点击一个按钮就会影响到其它所有使用了该按钮实例</p>
+<h2 id="typeof和instacneof的区别"><a href="#typeof和instacneof的区别" class="headerlink" title="typeof和instacneof的区别"></a>typeof和instacneof的区别</h2><h2 id="外边距重叠的问题？"><a href="#外边距重叠的问题？" class="headerlink" title="外边距重叠的问题？"></a>外边距重叠的问题？</h2><h2 id="seo优化？"><a href="#seo优化？" class="headerlink" title="seo优化？"></a>seo优化？</h2><h2 id="new操作符做了什么"><a href="#new操作符做了什么" class="headerlink" title="new操作符做了什么"></a>new操作符做了什么</h2><h2 id="面向过程编程是什么-和面向对象有什么区别？"><a href="#面向过程编程是什么-和面向对象有什么区别？" class="headerlink" title="面向过程编程是什么 和面向对象有什么区别？"></a>面向过程编程是什么 和面向对象有什么区别？</h2><h2 id="什么是ssr？有做过吗？有什么困难"><a href="#什么是ssr？有做过吗？有什么困难" class="headerlink" title="什么是ssr？有做过吗？有什么困难"></a>什么是ssr？有做过吗？有什么困难</h2><h2 id="箭头函数和普通函数区别？"><a href="#箭头函数和普通函数区别？" class="headerlink" title="箭头函数和普通函数区别？"></a>箭头函数和普通函数区别？</h2><h2 id="Page-Visibility-API用途？"><a href="#Page-Visibility-API用途？" class="headerlink" title="Page Visibility API用途？"></a>Page Visibility API用途？</h2><h2 id="HTML5新的特性？"><a href="#HTML5新的特性？" class="headerlink" title="HTML5新的特性？"></a>HTML5新的特性？</h2><h2 id="CSS3新特性？"><a href="#CSS3新特性？" class="headerlink" title="CSS3新特性？"></a>CSS3新特性？</h2><h2 id="px，em，rem的区别？1px解决方案"><a href="#px，em，rem的区别？1px解决方案" class="headerlink" title="px，em，rem的区别？1px解决方案"></a>px，em，rem的区别？1px解决方案</h2><h2 id="BFC（块级格式化上下文）的理解"><a href="#BFC（块级格式化上下文）的理解" class="headerlink" title="BFC（块级格式化上下文）的理解"></a>BFC（块级格式化上下文）的理解</h2><h2 id="script标签设置async或者defer的用处和区别？"><a href="#script标签设置async或者defer的用处和区别？" class="headerlink" title="script标签设置async或者defer的用处和区别？"></a>script标签设置async或者defer的用处和区别？</h2><h2 id="浏览器加载资源时的顺序和优化方案？"><a href="#浏览器加载资源时的顺序和优化方案？" class="headerlink" title="浏览器加载资源时的顺序和优化方案？"></a>浏览器加载资源时的顺序和优化方案？</h2><h2 id="居中有哪些方法？"><a href="#居中有哪些方法？" class="headerlink" title="居中有哪些方法？"></a>居中有哪些方法？</h2><h2 id="无限列表如何实现？复用和只是用一些dom"><a href="#无限列表如何实现？复用和只是用一些dom" class="headerlink" title="无限列表如何实现？复用和只是用一些dom"></a>无限列表如何实现？复用和只是用一些dom</h2><h2 id="浏览器事件机制是什么？冒泡和捕获？事件委托？分别是什么"><a href="#浏览器事件机制是什么？冒泡和捕获？事件委托？分别是什么" class="headerlink" title="浏览器事件机制是什么？冒泡和捕获？事件委托？分别是什么"></a>浏览器事件机制是什么？冒泡和捕获？事件委托？分别是什么</h2><h2 id="什么是点击穿透"><a href="#什么是点击穿透" class="headerlink" title="什么是点击穿透"></a>什么是点击穿透</h2>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/09/%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E4%B9%8B-vue%E7%AF%87/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">复习知识之---vue篇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/11/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                        <span class="hidden-mobile">服务器环境配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('twikoo', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.1/dist/twikoo.all.min.js', function () {
+        twikoo.init({ envId: 'https://blog-talk-e49bh307m-qiupo.vercel.app/' })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">赣ICP备18015863号-2</a>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/mermaid/8.8.2/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

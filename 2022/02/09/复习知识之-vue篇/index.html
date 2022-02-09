@@ -15,11 +15,27 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="秋坡博客">
-  <meta name="author" content="qiupo">
+  <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>归档 - qiupoBlog</title>
+  <title>复习知识之---vue篇 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
 
 
 
@@ -51,7 +67,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -145,14 +161,56 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/huabi.jpg') no-repeat center center;
+         style="background: url('/img/moonbg.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="复习知识之---vue篇">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Taoqiupo
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-09 13:56" pubdate>
+        2022年2月9日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      85 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -165,76 +223,89 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 16 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/11/25/browser/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Event Loop解读</span>
-      <time style="float: right;">11-25</time>
-    </a>
-  
-    
-    <a href="/2020/11/24/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%96%B9%E5%BC%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">浏览器中的缓存方式</span>
-      <time style="float: right;">11-24</time>
-    </a>
-  
-    
-    <a href="/2020/11/23/network/http%E5%8D%8F%E8%AE%AE/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">http协议初解</span>
-      <time style="float: right;">11-23</time>
-    </a>
-  
-    
-    <a href="/2020/11/23/browser/%E6%A6%82%E8%BF%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">浏览器概述</span>
-      <time style="float: right;">11-23</time>
-    </a>
-  
-    
-    <a href="/2020/11/22/browser/%E8%B7%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">浏览器同源策略</span>
-      <time style="float: right;">11-22</time>
-    </a>
-  
-    
-    <a href="/2020/11/09/RESTFULL/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">RESTFULL</span>
-      <time style="float: right;">11-09</time>
-    </a>
-  
-    
-    <a href="/2020/11/09/SOLID/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SOLID</span>
-      <time style="float: right;">11-09</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">复习知识之---vue篇</h1>
+            
+            <div class="markdown-body">
+              <h3 id="首先应该记起的内容"><a href="#首先应该记起的内容" class="headerlink" title="首先应该记起的内容"></a>首先应该记起的内容</h3><p>最应该想起的应该就是vue的生命周期部分，这是贯穿开发从始至终的部分，贴一张官网的生命周期图：<br><img src="https://raw.githubusercontent.com/qiupo/myImages/master/img/20220209140454.png" srcset="/img/loading.gif" alt="生命周期"></p>
+<p>在vue中，我最常使用的包括created,beforeMount,mounted,beforeDestory(最新部分已经改成beforeUnmount),destoryed(最新部分已修改成unmounted).</p>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/01/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E9%A2%98%E7%9B%AE(1)/">
+                        <span class="hidden-mobile">奇奇怪怪的题目(1)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('twikoo', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.1/dist/twikoo.all.min.js', function () {
+        twikoo.init({ envId: 'https://blog-talk-e49bh307m-qiupo.vercel.app/' })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -324,9 +395,15 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
 
 
 
@@ -368,6 +445,13 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/mermaid/8.8.2/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 
