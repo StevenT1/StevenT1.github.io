@@ -629,11 +629,10 @@ callHook(vm, <span class="hljs-string">&#x27;created&#x27;</span>)</code></pre>
 <td>destroyed</td>
 <td>组件已销毁，作用同上</td>
 </tr>
-<tr>
-<td>&ensp;在上面内容中总能看到lifecycle，这也是生命周期的文件，这不得重点关注一下，然后在刚刚看到的<code>_update</code>后面一下就找到了一个急救的东西<code>$forceUpdate</code>.</td>
-<td></td>
-</tr>
 </tbody></table>
+</li>
+</ul>
+<p>&ensp;在上面内容中总能看到lifecycle，这也是生命周期的文件，这不得重点关注一下，然后在刚刚看到的<code>_update</code>后面一下就找到了一个急救的东西<code>$forceUpdate</code>.</p>
 <pre><code class="hljs javascript">Vue.prototype.$forceUpdate = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
   <span class="hljs-keyword">const</span> vm: Component = <span class="hljs-built_in">this</span>
   <span class="hljs-keyword">if</span> (vm._watcher) &#123;
@@ -682,8 +681,7 @@ run () &#123;
     &#125;
   &#125;
 &#125;</code></pre>
-<code>$forceUpdate</code>的作用是当数据刷新后视图却没有跟着刷新时的抢救措施，让他强制刷新一下。看代码中主要的行为就是使用了watcher中的update方法，所以<code>$forceUpdate</code>其实是会触发<code>beforeUpdate</code>和<code>updated</code>的，但是不会重新加载组件。</li>
-</ul>
+<p><code>$forceUpdate</code>的作用是当数据刷新后视图却没有跟着刷新时的抢救措施，让他强制刷新一下。看代码中主要的行为就是使用了watcher中的update方法，所以<code>$forceUpdate</code>其实是会触发<code>beforeUpdate</code>和<code>updated</code>的，但是不会重新加载组件。</p>
 
             </div>
             <hr>
@@ -704,7 +702,7 @@ run () &#123;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/01/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E9%A2%98%E7%9B%AE(1)/">
+                      <a href="/2022/02/01/%20review/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E9%A2%98%E7%9B%AE(1)/">
                         <span class="hidden-mobile">奇奇怪怪的题目(1)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -720,11 +718,26 @@ run () &#123;
               <article class="comments" id="comments">
                 
                 
-  <div id="twikoo"></div>
+  <div id="gitalk-container"></div>
   <script type="text/javascript">
-    Fluid.utils.waitElementVisible('twikoo', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.1/dist/twikoo.all.min.js', function () {
-        twikoo.init({ envId: 'https://blog-talk-e49bh307m-qiupo.vercel.app/' })
+    Fluid.utils.waitElementVisible('gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/gitalk/1.7.0/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '8f98ceef01e007ac7806',
+          clientSecret: '540e33bc89ad84865b78f7bf9844f7bb11545d5f',
+          repo: 'qiupo.github.io',
+          owner: 'qiupo',
+          admin: ["qiupo"],
+          id: '3a8923ac2640483351ecf3ac46957d56',
+          language: 'zh-CN',
+          labels: ["comment","funny","share"],
+          perPage: 10,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        });
+        gitalk.render('gitalk-container');
       });
     });
   </script>

@@ -956,11 +956,26 @@ mySetInterVal(<span class="hljs-function"><span class="hljs-params">()</span>=&g
               <article class="comments" id="comments">
                 
                 
-  <div id="twikoo"></div>
+  <div id="gitalk-container"></div>
   <script type="text/javascript">
-    Fluid.utils.waitElementVisible('twikoo', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.1/dist/twikoo.all.min.js', function () {
-        twikoo.init({ envId: 'https://blog-talk-e49bh307m-qiupo.vercel.app/' })
+    Fluid.utils.waitElementVisible('gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/gitalk/1.7.0/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '8f98ceef01e007ac7806',
+          clientSecret: '540e33bc89ad84865b78f7bf9844f7bb11545d5f',
+          repo: 'qiupo.github.io',
+          owner: 'qiupo',
+          admin: ["qiupo"],
+          id: 'd9681d4458faf67011df15bf190085a8',
+          language: 'zh-CN',
+          labels: ["comment","funny","share"],
+          perPage: 10,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        });
+        gitalk.render('gitalk-container');
       });
     });
   </script>

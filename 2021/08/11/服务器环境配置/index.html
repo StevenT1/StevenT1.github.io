@@ -358,7 +358,7 @@ bash n lts
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/01/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E9%A2%98%E7%9B%AE(1)/">
+                      <a href="/2022/02/01/%20review/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E9%A2%98%E7%9B%AE(1)/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">奇奇怪怪的题目(1)</span>
                         <span class="visible-mobile">上一篇</span>
@@ -384,11 +384,26 @@ bash n lts
               <article class="comments" id="comments">
                 
                 
-  <div id="twikoo"></div>
+  <div id="gitalk-container"></div>
   <script type="text/javascript">
-    Fluid.utils.waitElementVisible('twikoo', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.1/dist/twikoo.all.min.js', function () {
-        twikoo.init({ envId: 'https://blog-talk-e49bh307m-qiupo.vercel.app/' })
+    Fluid.utils.waitElementVisible('gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/gitalk/1.7.0/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '8f98ceef01e007ac7806',
+          clientSecret: '540e33bc89ad84865b78f7bf9844f7bb11545d5f',
+          repo: 'qiupo.github.io',
+          owner: 'qiupo',
+          admin: ["qiupo"],
+          id: '058f4fb38261ba44dbdae4795d875759',
+          language: 'zh-CN',
+          labels: ["comment","funny","share"],
+          perPage: 10,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        });
+        gitalk.render('gitalk-container');
       });
     });
   </script>
