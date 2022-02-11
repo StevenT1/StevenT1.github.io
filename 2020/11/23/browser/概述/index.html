@@ -268,7 +268,7 @@
 <li>网络（Networking）</li>
 <li>XML解析器（XML Parser）</li>
 <li>显示后端（Display Backend）</li>
-<li>数据持久层（Data Persistence）<br><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/liulanqi.png" srcset="/img/loading.gif"></li>
+<li>数据持久层（Data Persistence）<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/liulanqi.png" srcset="/img/loading.gif"></li>
 </ul>
 <ol>
 <li>常见的渲染引擎<table>
@@ -297,14 +297,14 @@
 </tbody></table>
 </li>
 </ol>
-<h2 id="渲染引擎结构和工作流程"><a href="#渲染引擎结构和工作流程" class="headerlink" title="渲染引擎结构和工作流程"></a>渲染引擎结构和工作流程</h2><h3 id="总流程"><a href="#总流程" class="headerlink" title="总流程"></a>总流程</h3><p><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/render.png" srcset="/img/loading.gif"><br>结合这张渲染引擎的过程，可以得知</p>
+<h2 id="渲染引擎结构和工作流程"><a href="#渲染引擎结构和工作流程" class="headerlink" title="渲染引擎结构和工作流程"></a>渲染引擎结构和工作流程</h2><h3 id="总流程"><a href="#总流程" class="headerlink" title="总流程"></a>总流程</h3><p><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/render.png" srcset="/img/loading.gif"><br>结合这张渲染引擎的过程，可以得知</p>
 <ul>
 <li>通过HTML/JavaScript/CSS等文件作为输入–&gt;</li>
 <li>解析HTML转换成DOM Tree，把HTML的标签啥的转成DOM树的节点–&gt;</li>
 <li>根据CSS的渲染规则和DOM树关联起来生成渲染树Render Tree–&gt;</li>
 <li>根据渲染树生成布局树Layout of Render Tree–&gt;</li>
 <li>最后绘制渲染树–&gt;</li>
-<li>展示页面<h3 id="每步详细流程"><a href="#每步详细流程" class="headerlink" title="每步详细流程"></a>每步详细流程</h3><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/render2.png" srcset="/img/loading.gif"><br>三大件的代码进入浏览器之后，会通过HTML解析器、CSS解析器、JavaScript解释器，最终生成最后的渲染树给到Layout去进行布局树的构建，最后通过最终的Tree进行Painting绘制得到最后的页面。<br>其中因为Javascript可以操作CSS和DOM元素，所以JavaScript可以打断整个流程，所以<strong>我们最好是把JavaScript放在整个页面的最后来执行</strong>。<br>当其中的<strong>DOM发生变化后，整个RenderTree和Layout of Render Tree都要重新生成，然后重新绘制</strong>。</li>
+<li>展示页面<h3 id="每步详细流程"><a href="#每步详细流程" class="headerlink" title="每步详细流程"></a>每步详细流程</h3><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/render2.png" srcset="/img/loading.gif"><br>三大件的代码进入浏览器之后，会通过HTML解析器、CSS解析器、JavaScript解释器，最终生成最后的渲染树给到Layout去进行布局树的构建，最后通过最终的Tree进行Painting绘制得到最后的页面。<br>其中因为Javascript可以操作CSS和DOM元素，所以JavaScript可以打断整个流程，所以<strong>我们最好是把JavaScript放在整个页面的最后来执行</strong>。<br>当其中的<strong>DOM发生变化后，整个RenderTree和Layout of Render Tree都要重新生成，然后重新绘制</strong>。</li>
 </ul>
 
             </div>
@@ -375,7 +375,7 @@
           admin: ["qiupo"],
           id: '14b0f5abf2f026d81d3fa1e26f6a2ec3',
           language: 'zh-CN',
-          labels: ["comment","funny","share"],
+          labels: ["comment"],
           perPage: 10,
           pagerDirection: 'last',
           createIssueManually: true,

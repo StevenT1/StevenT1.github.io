@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>Promise三兄弟all,race,allsettled - qiupoBlog</title>
+  <title>复习知识--首屏优化 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -166,7 +166,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Promise三兄弟all,race,allsettled">
+            <span class="h2" id="subtitle" title="复习知识--首屏优化">
               
             </span>
 
@@ -181,8 +181,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-03 21:46" pubdate>
-        2020年10月3日 晚上
+      <time datetime="2022-02-10 16:53" pubdate>
+        2022年2月10日 下午
       </time>
     </span>
   
@@ -193,7 +193,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      623 字
+      1.1k 字
     </span>
   
 
@@ -203,7 +203,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      20
        分钟
     </span>
   
@@ -233,93 +233,71 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Promise三兄弟all,race,allsettled</h1>
+            <h1 style="display: none">复习知识--首屏优化</h1>
             
             <div class="markdown-body">
-              <h2 id="all"><a href="#all" class="headerlink" title="all"></a>all</h2><p>Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 promise 都“完成（resolved）”或参数中不包含 promise 时回调完成（resolve）；如果参数中  promise 有一个失败（rejected），此实例回调失败（reject），失败的原因是第一个失败 promise 的结果。</p>
-<pre><code class="hljs reasonml">const promise1=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">1</span>);
-const promise2=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">2</span>);
-const promise3=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>reject(<span class="hljs-number">3</span>);
-const promise4=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">4</span>);
-const promise = <span class="hljs-literal">[<span class="hljs-identifier">promise1</span>,<span class="hljs-identifier">promise2</span>,<span class="hljs-identifier">promise3</span>,<span class="hljs-identifier">promise4</span>]</span>
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>all(promise).<span class="hljs-keyword">then</span>(<span class="hljs-keyword">val</span>=&gt;&#123;
-    <span class="hljs-keyword">val</span>.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each(<span class="hljs-params">r</span>=&gt;<span class="hljs-params">console</span>.<span class="hljs-params">log</span>(<span class="hljs-params">r</span>)</span>)
-&#125;).catch(res=&gt;&#123;
-    console.log(res)
-&#125;)
-<span class="hljs-comment">//3</span></code></pre>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>all的特性是只要有一个<code>rejected</code>就返回该失败结果，其他的都当作没发生。</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myAll</span>(<span class="hljs-params">promises</span>)</span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-keyword">async</span> (r,j)=&gt;&#123;
-    <span class="hljs-keyword">let</span> data = [],Err,isError=<span class="hljs-literal">false</span>;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> promise <span class="hljs-keyword">of</span> promises)&#123;
-        <span class="hljs-keyword">if</span>(isError) <span class="hljs-keyword">break</span>;
-                promise = promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span> ? promise : <span class="hljs-built_in">Promise</span>.resolve(promise);
-            <span class="hljs-keyword">await</span>   promise.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
-            data.push(res);
-        &#125;,<span class="hljs-function"><span class="hljs-params">error</span>=&gt;</span>&#123;
-          isError=<span class="hljs-literal">true</span>;
-            j(error)
-        &#125;)
-        &#125;
-    
-    r(data);
-  &#125;)
-&#125;</code></pre>
-<h2 id="race"><a href="#race" class="headerlink" title="race"></a>race</h2><p>Promise.race(iterable) 方法返回一个 promise，一旦迭代器中的某个promise解决或拒绝，返回的 promise就会解决或拒绝。</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> promise1=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>);
-<span class="hljs-keyword">const</span> promise2=<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">setTimeout</span>(reject, <span class="hljs-number">500</span>, <span class="hljs-string">&#x27;500&#x27;</span>);
-&#125;);
-<span class="hljs-keyword">const</span> promise3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">setTimeout</span>(resolve, <span class="hljs-number">1000</span>, <span class="hljs-string">&#x27;1000&#x27;</span>);
-&#125;);
-<span class="hljs-keyword">const</span> promise4=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">4</span>);
-<span class="hljs-keyword">const</span> promise = [promise3,promise2,promise1,promise4];
-<span class="hljs-built_in">Promise</span>.race(promise).then(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.log(value);
-&#125;);
-<span class="hljs-comment">// 1 1最快得到结果，所以只会输出1</span></code></pre>
-<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myRace</span>(<span class="hljs-params">promises</span>)</span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r,j</span>)=&gt;</span>&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> promise <span class="hljs-keyword">of</span> promises)&#123;
-                promise = promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span> ? promise : <span class="hljs-built_in">Promise</span>.resolve(promise);
-            promise.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
-            r(res)
-        &#125;,<span class="hljs-function"><span class="hljs-params">error</span>=&gt;</span>&#123;
-            j(error)
-        &#125;)
-        &#125;
-  &#125;)
-&#125;</code></pre>
-<h2 id="allsettled"><a href="#allsettled" class="headerlink" title="allsettled"></a>allsettled</h2><p>Promise.allSettled()方法返回一个在所有给定的promise都已经fulfilled或rejected后的promise，并带有一个对象数组，每个对象表示对应的promise结果。当有多个彼此不依赖的异步任务成功完成时，或者我们要得到每个promise的结果的时候，可以使用。</p>
-<pre><code class="hljs reasonml">const promise1=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">1</span>);
-const promise2=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">2</span>);
-const promise3=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>reject(<span class="hljs-number">3</span>);
-const promise4=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">4</span>);
-const promise = <span class="hljs-literal">[<span class="hljs-identifier">promise1</span>,<span class="hljs-identifier">promise2</span>,<span class="hljs-identifier">promise3</span>,<span class="hljs-identifier">promise4</span>]</span>
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>all<span class="hljs-constructor">Settled(<span class="hljs-params">promise</span>)</span>.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">val</span>=&gt;&#123;
-    <span class="hljs-keyword">val</span>.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each(<span class="hljs-params">re</span>=&gt;<span class="hljs-params">console</span>.<span class="hljs-params">log</span>(<span class="hljs-params">re</span>)</span>)
-&#125;)
-<span class="hljs-comment">//&gt; Object &#123; status: &quot;fulfilled&quot;, value: 1 &#125;</span>
-<span class="hljs-comment">//&gt; Object &#123; status: &quot;fulfilled&quot;, value: 2 &#125;</span>
-<span class="hljs-comment">//&gt; Object &#123; status: &quot;rejected&quot;, reason: 3 &#125;</span>
-<span class="hljs-comment">//&gt; Object &#123; status: &quot;fulfilled&quot;, value: 4 &#125;</span></code></pre>
-<h3 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h3><p>根据其特性，不难实现allSettled，我们只需要得到所有的promise结果存到数组返回即可。</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myAllSettled</span>(<span class="hljs-params">promises</span>)</span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-keyword">async</span> resolve=&gt;&#123;
-    <span class="hljs-keyword">let</span> data=[];
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> promise <span class="hljs-keyword">of</span> promises)&#123;
-      promise = promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span> ? promise : <span class="hljs-built_in">Promise</span>.resolve(promise)
-        <span class="hljs-keyword">await</span> promise.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
-        data.push(&#123; <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;fulfilled&#x27;</span>, <span class="hljs-attr">value</span>: res &#125;);
-      &#125;,<span class="hljs-function"><span class="hljs-params">error</span>=&gt;</span>&#123;
-        data.push(&#123; <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;rejected&#x27;</span>, <span class="hljs-attr">reason</span>: error &#125;);
-      &#125;)
-    &#125;
-    resolve(data);
-  &#125;)
-&#125;</code></pre>
+              <h3 id="首屏优化"><a href="#首屏优化" class="headerlink" title="首屏优化"></a>首屏优化</h3><p>&emsp;&emsp;首先祭出神图，来源是 <a target="_blank" rel="noopener" href="https://proxy.qiupo.workers.dev/?https://www.w3.org/TR/navigation-timing/#sec-window.performance-attribute">w3.org</a><br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202111123837.png" srcset="/img/loading.gif" title="Processing Model"></p>
+<h2 id="什么是首屏"><a href="#什么是首屏" class="headerlink" title="什么是首屏"></a>什么是首屏</h2><p>什么是首屏呢？<br>&emsp;&emsp;显而易见，这就是打开网址后最先出现在用户面前的页面，在这个首次展现的过程中，我们会遇到很多问题，比如说：输入网址后回车，页面是白色的，需要等待很久才能出来内容。<br>&emsp;&emsp;那么为了解决这个问题，我们必须了解浏览器首屏的时候都做了什么事情？其实这里面涉及到很多的内容，因为我个人认为首屏时间其实包含用户从输入好网址后回车开始页面出现内容为止这段时间，那么这段时间发生了什么呢？</p>
+<h1 id="输入url到页面出来中发生了什么？"><a href="#输入url到页面出来中发生了什么？" class="headerlink" title="输入url到页面出来中发生了什么？"></a>输入url到页面出来中发生了什么？</h1><p>&emsp;&emsp;我们只讨论其中比较重要的部分，那么显而易见的可以分成以下几个部分(<a target="_blank" rel="noopener" href="https://qiupo.github.io/2020/11/24/browser/%E8%BE%93%E5%85%A5url%E5%88%B0%E5%87%BA%E7%8E%B0%E5%86%85%E5%AE%B9%E7%9A%84%E6%B5%81%E7%A8%8B/">详情可以看另一篇</a>)：</p>
+<ul>
+<li>url解析，dns 查询</li>
+<li>连接请求</li>
+<li>响应并接受资源</li>
+<li>页面渲染</li>
+</ul>
+<h2 id="性能指标有哪些"><a href="#性能指标有哪些" class="headerlink" title="性能指标有哪些"></a>性能指标有哪些</h2><p><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202101748527.png" srcset="/img/loading.gif" title="performance返回值"></p>
+<ol>
+<li>If the navigation is aborted for any of the following reasons, abort these steps without changing the attributes in window.performance.timing and window.performance.navigation.<ul>
+<li>The navigation is aborted due to the sandboxed navigation browsing context flag or the sandboxed top-level navigation browsing context flag, or a preexist attempt to navigate the browsing context.</li>
+<li>The navigation is caused by fragment identifiers within the page.</li>
+<li>The new resource is to be handled by some sort of inline content.</li>
+<li>The new resource is to be handled using a mechanism that does not affect the browsing context.</li>
+<li>The user refuses to allow the document to be unloaded.</li>
+</ul>
+</li>
+<li>Immediately after the user agent prompts to unload the previous document, record the current time as navigationStart.</li>
+<li>Record the current navigation type in window.performance.navigation.type if it has not been set:<ul>
+<li>If the navigation was started by clicking on a link, or entering the URL in the user agent’s address bar, or form submission, or initializing through a script operation other than the location.reload() method, let the navigation type be TYPE_NAVIGATE.</li>
+<li>If the navigation was started either as a result of a meta refresh, or the location.reload() method, or other equivalent actions, let the navigation type be TYPE_RELOAD.</li>
+<li>If the navigation was started as a result of history traversal, let the navigation type be TYPE_BACK_FORWARD.</li>
+<li>Otherwise, let the navigation type be TYPE_RESERVED.</li>
+</ul>
+</li>
+<li>If the current document and the previous document are from different origins, set both unloadEventStart and unloadEventEnd to 0 then go to step 6. Otherwise, record unloadEventStart as the time immediately before the unload event.</li>
+<li>Immediately after the unload event is completed, record the current time as unloadEventEnd.</li>
+<li>If the new resource is to be fetched using HTTP GET or equivalent, immediately before a user agent checks with the relevant application caches, record the current time as fetchStart. Otherwise, immediately before a user agent starts the fetching process, record the current time as fetchStart.</li>
+<li>Let domainLookupStart, domainLookupEnd, connectStart and connectEnd be the same value as fetchStart.</li>
+<li>If the resource is fetched from the relevant application cache or local resources, including the HTTP cache, go to step 13.</li>
+<li>If no domain lookup is required, go to step 11. Otherwise, immediately before a user agent starts the domain name lookup, record the time as domainLookupStart.</li>
+<li>Record the time as domainLookupEnd immediately after the domain name lookup is successfully done. A user agent may need multiple retries before that. If the domain lookup fails, abort the rest of the steps.</li>
+<li>If a persistent transport connection is used to fetch the resource, let connectStart and connectEnd be the same value of domainLookupEnd. Otherwise, record the time as connectStart immediately before initiating the connection to the server and record the time as connectEnd immediately after the connection to the server or the proxy is established. A user agent may need multiple retries before this time. If a connection can not be established, abort the rest of the steps.</li>
+<li>In step 11, a user agent should also carry out these additional steps if it supports the secureConnectionStart attribute:<ul>
+<li>If the scheme of the current document is HTTPS, the user agent must record the time as secureConnectionStart immediately before the handshake process to secure the connection.</li>
+<li>If the scheme of the current document is not HTTPS, the user agent must set the value of secureConnectionStart to 0.</li>
+</ul>
+</li>
+<li>Immediately before a user agent starts sending request for the document, record the current time as requestStart.</li>
+<li>Record the time as responseStart immediately after the user agent receives the first byte of the response.</li>
+<li>Record the time as responseEnd immediately after receiving the last byte of the response.</li>
+<li>If the fetched resource results in an HTTP redirect or equivalent, then<ul>
+<li>if the current document and the document that is redirected to are not from the same origin, set redirectStart, redirectEnd, unloadEventStart, unloadEventEnd and redirectCount to 0. Then, return to step 6 with the new resource.</li>
+<li>if there is previous redirect involving documents that are not from the same origin, set redirectStart, redirectEnd, unloadEventStart, unloadEventStart and redirectCount to 0. Then, return to step 6 with the new resource.</li>
+<li>Increment redirectCount by 1.</li>
+<li>If the value of redirectStart is 0, let it be the value of fetchStart.</li>
+<li>Let redirectEnd be the value of responseEnd.</li>
+<li>Set all the attributes in window.performance.timing to 0 except navigationStart, redirectStart, redirectEnd, unloadEventStart and unloadEventEnd.</li>
+<li>Return to step 6 with the new resource.</li>
+</ul>
+</li>
+<li>Record the time as domLoading immediately before the user agent sets the current document readiness to “loading”.</li>
+<li>Record the time as domInteractive immediately before the user agent sets the current document readiness to “interactive”.</li>
+<li>Record the time as domContentLoadedEventStart immediately before the user agent fires the DOMContentLoaded event at the document.</li>
+<li>Record the time as domContentLoadedEventEnd immediately after the DOMContentLoaded event completes.</li>
+<li>Record the time as domComplete immediately before the user agent sets the current document readiness to “complete”.</li>
+<li>Record the time as loadEventStart immediately before the user agent fires the load event.</li>
+<li>Record the time as loadEventEnd immediately after the user agent completes the load event.<br><a target="_blank" rel="noopener" href="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202101748527.png" title="参数"></a><h2 id="可以做什么来优化"><a href="#可以做什么来优化" class="headerlink" title="可以做什么来优化"></a>可以做什么来优化</h2><h2 id="怎么监控性能"><a href="#怎么监控性能" class="headerlink" title="怎么监控性能"></a>怎么监控性能</h2></li>
+</ol>
+
             </div>
             <hr>
             <div>
@@ -328,7 +306,7 @@ const promise = <span class="hljs-literal">[<span class="hljs-identifier">promis
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%89%8B%E5%86%99/">手写</a>
+                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0/">复习</a>
                     
                   </div>
                 
@@ -336,7 +314,7 @@ const promise = <span class="hljs-literal">[<span class="hljs-identifier">promis
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%89%8B%E5%86%99%E7%B3%BB%E5%88%97/">手写系列</a>
+                      <a class="hover-with-bg" href="/tags/%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/">首屏优化</a>
                     
                   </div>
                 
@@ -349,9 +327,9 @@ const promise = <span class="hljs-literal">[<span class="hljs-identifier">promis
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/09/SOLID/">
+                      <a href="/2022/02/11/browser/%E8%BE%93%E5%85%A5url%E5%88%B0%E5%87%BA%E7%8E%B0%E5%86%85%E5%AE%B9%E7%9A%84%E6%B5%81%E7%A8%8B/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SOLID</span>
+                        <span class="hidden-mobile">输入url到出现内容的流程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -359,8 +337,8 @@ const promise = <span class="hljs-literal">[<span class="hljs-identifier">promis
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/03/%E6%89%8B%E5%86%99/">
-                        <span class="hidden-mobile">手写汇总</span>
+                      <a href="/2022/02/09/%20review/%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E4%B9%8B-vue%E7%AF%87/">
+                        <span class="hidden-mobile">复习知识之---vue篇</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -386,7 +364,7 @@ const promise = <span class="hljs-literal">[<span class="hljs-identifier">promis
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: '622be2b14244edd12ea7f47716661147',
+          id: '2c03591cd44573e6a16e6b91ffc0f1a8',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,

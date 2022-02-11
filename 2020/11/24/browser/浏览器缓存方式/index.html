@@ -236,8 +236,8 @@
             <h1 style="display: none">浏览器中的缓存方式</h1>
             
             <div class="markdown-body">
-              <p><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/20201130133052.png" srcset="/img/loading.gif"></p>
-<h2 id="浏览器缓存（http缓存）"><a href="#浏览器缓存（http缓存）" class="headerlink" title="浏览器缓存（http缓存）"></a>浏览器缓存（http缓存）</h2><p>&emsp;&emsp;先看看浏览器发起请求和，内部是个什么流程：<br><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/20201130152153.png" srcset="/img/loading.gif"><br>&emsp;&emsp;如图，浏览器会先问自己有没有缓存，缓存是否过期了，然后去问服务器关于资源的问题。如此我们先解决第一个问题，浏览器自己的缓存是放在什么地方了。<br><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/20201130152429.png" srcset="/img/loading.gif"><br>&emsp;&emsp;从浏览器的<code>network</code>里可以看到资源会放在<code>memory cache</code>和<code>disk cache</code>里。</p>
+              <p><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130133052.png" srcset="/img/loading.gif"></p>
+<h2 id="浏览器缓存（http缓存）"><a href="#浏览器缓存（http缓存）" class="headerlink" title="浏览器缓存（http缓存）"></a>浏览器缓存（http缓存）</h2><p>&emsp;&emsp;先看看浏览器发起请求和，内部是个什么流程：<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130152153.png" srcset="/img/loading.gif"><br>&emsp;&emsp;如图，浏览器会先问自己有没有缓存，缓存是否过期了，然后去问服务器关于资源的问题。如此我们先解决第一个问题，浏览器自己的缓存是放在什么地方了。<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130152429.png" srcset="/img/loading.gif"><br>&emsp;&emsp;从浏览器的<code>network</code>里可以看到资源会放在<code>memory cache</code>和<code>disk cache</code>里。</p>
 <h3 id="memory-cache-和-disk-cache"><a href="#memory-cache-和-disk-cache" class="headerlink" title="memory cache 和 disk cache"></a>memory cache 和 disk cache</h3><h4 id="memory-cache"><a href="#memory-cache" class="headerlink" title="memory cache"></a>memory cache</h4><p>顾名思义，就是将资源缓存到<em>内存</em>中，等待下次访问时不需要重新下载资源，而直接从内存中获取。<code>Webkit</code>早已支持<code>memoryCache</code>。目前<code>Webkit</code>资源分成两类</p>
 <ul>
 <li>一类是<strong>主资源</strong>，比如<em>HTML页面</em>，或者<em>下载项</em></li>
@@ -271,7 +271,7 @@
 <h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>&emsp;&emsp;协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。<br>&emsp;&emsp;其中<code>header</code>中的缓存标识有：<code>if-Modified/if-Modified-Since</code>和<code>Etag/if-none-match</code>，其中<code>Etag/if-none-match</code>会先被服务器验证，之后再去查验<code>if-Modified</code>的情况</p>
 <ul>
 <li>if-Mif-Modifiedif-Modified/if-Modified-Since<br>第一次请求一个资源的时候，服务器会在头部加上<code>if-Modified</code>字段来告诉浏览器最后一次修改的时间什么时候。然后浏览器再次请求相同资源时，会附加<code>if-Modified-Since</code>字段，该字段为之前<code>if-Modified</code>的值，服务器据此判断资源是否被修改过，如果没变化，就返回<code>304</code>，告诉浏览器用之前的资源就好了，这资源咱就不再重复传了。</li>
-<li>Etag/if-none-match<br>和上面情况相同，不过返回的值是一个<code>Etag</code>校验码，用来标识资源是否有变动，不过在确认没变化后除了返回<code>304</code>，还有传回一个<code>Etag</code>。<br><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/20201130155850.png" srcset="/img/loading.gif"><br><img src="https://cdn.jsdelivr.net/gh/qiupo/myImages/img/20201130155821.png" srcset="/img/loading.gif"></li>
+<li>Etag/if-none-match<br>和上面情况相同，不过返回的值是一个<code>Etag</code>校验码，用来标识资源是否有变动，不过在确认没变化后除了返回<code>304</code>，还有传回一个<code>Etag</code>。<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130155850.png" srcset="/img/loading.gif"><br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130155821.png" srcset="/img/loading.gif"></li>
 </ul>
 <h2 id="本地缓存"><a href="#本地缓存" class="headerlink" title="本地缓存"></a>本地缓存</h2><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>&emsp;&emsp;<code>Cookie</code> 是直接存储在浏览器中的一小串数据。它们是 <code>HTTP</code> 协议的一部分，由 <code>RFC 6265</code> 规范定义。<br>&emsp;&emsp;<code>Cookie</code> 通常是由 <code>Web</code> 服务器使用响应 <code>Set-Cookie HTTP-header</code> 设置的。然后浏览器使用 <code>Cookie HTTP-header</code> 将它们自动添加到（几乎）每个对相同域的请求中。<br>&emsp;&emsp;最常使用的就是登录验证，整个过程中，客户端登录后，服务器在响应中使用 <code>Set-Cookie HTTP-header</code> 来设置具有唯一“会话标识符<code>（session identifier）</code>的 <code>cookie</code>。下次如果请求是由相同域发起的，浏览器会使用<code>Cookie HTTP-header</code>通过网络发送 <code>cookie</code>。所以服务器就知道是谁发起了请求。</p>
 <h3 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h3><p>&emsp;&emsp;<code>sessionStorage</code>属性允许你访问一个，对应当前源的<code>session Storage</code>对象。它与<code>localStorage</code>相似，不同之处在于<code>localStorage</code>里面存储的数据没有过期时间设置，而存储在 <code>sessionStorage</code> 里面的数据在页面会话结束时会被清除。</p>
@@ -367,7 +367,7 @@
           admin: ["qiupo"],
           id: 'ee0a4870e8b434ade3d47785d45cc936',
           language: 'zh-CN',
-          labels: ["comment","funny","share"],
+          labels: ["comment"],
           perPage: 10,
           pagerDirection: 'last',
           createIssueManually: true,

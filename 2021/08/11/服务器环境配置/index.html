@@ -193,7 +193,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      844 字
+      874 字
     </span>
   
 
@@ -276,7 +276,7 @@
 <ol>
 <li><p>挂载硬盘<br>因为我的服务器买的时候送了一块 200g 的数据盘（我之前也发现原本的 50g 完全不够用），所以需要在服务器一启动就把数据盘挂载在我们想要挂载的文件路径上。<br>参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/362/6734">https://cloud.tencent.com/document/product/362/6734</a></p>
 <ol>
-<li>先执行<code>fdisk -l</code>查看云服务器上的硬盘情况:<br><code>/dev/vda</code> 是系统盘，<code>/dev/vdb</code> 是新增数据盘<br><img src="https://raw.githubusercontent.com/qiupo/myImages/master/img/20210811141222.png" srcset="/img/loading.gif"><br>这样，我们就找到了我们需要挂载的数据盘,然后对设备直接创建文件系统<br><code>mkfs -t ext4 /dev/vdb</code><br>这样就格式化好了，然后新建挂载点并且挂载上去就可以了<br><code>mkdir /mydata</code><br><code>mount /dev/vdb /mydata</code><br>在输入<code>df -TH</code>即可查看是否挂载成功<br><img src="https://raw.githubusercontent.com/qiupo/myImages/master/img/20210811141610.png" srcset="/img/loading.gif"></li>
+<li>先执行<code>fdisk -l</code>查看云服务器上的硬盘情况:<br><code>/dev/vda</code> 是系统盘，<code>/dev/vdb</code> 是新增数据盘<br>![]<a target="_blank" rel="noopener" href="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20210811141222.png">https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20210811141222.png</a>)<br>这样，我们就找到了我们需要挂载的数据盘,然后对设备直接创建文件系统<br><code>mkfs -t ext4 /dev/vdb</code><br>这样就格式化好了，然后新建挂载点并且挂载上去就可以了<br><code>mkdir /mydata</code><br><code>mount /dev/vdb /mydata</code><br>在输入<code>df -TH</code>即可查看是否挂载成功<br>![]<a target="_blank" rel="noopener" href="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20210811141610.png">https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20210811141610.png</a>)</li>
 </ol>
 </li>
 <li><p>安装 git<br>参考官网：<a target="_blank" rel="noopener" href="https://git-scm.com/download/linux">https://git-scm.com/download/linux</a><br>直接运行<code>yun install git</code>即可</p>
@@ -397,7 +397,7 @@ bash n lts
           admin: ["qiupo"],
           id: '058f4fb38261ba44dbdae4795d875759',
           language: 'zh-CN',
-          labels: ["comment","funny","share"],
+          labels: ["comment"],
           perPage: 10,
           pagerDirection: 'last',
           createIssueManually: true,
