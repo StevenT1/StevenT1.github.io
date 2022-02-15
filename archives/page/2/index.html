@@ -48,7 +48,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
-
+<script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').then(function (registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }).catch(function (err) {
+              console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+  }
+</script>
 
 <body>
   <header style="height: 60vh;">
@@ -175,13 +185,19 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 19 篇文章</p>
+  <p class="h4">共计 20 篇文章</p>
   <hr>
   
   
     
       
       <p class="h5">2020</p>
+    
+    <a href="/2020/12/22/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">面试题</span>
+      <time style="float: right;">12-22</time>
+    </a>
+  
     
     <a href="/2020/11/25/browser/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Event Loop解读</span>

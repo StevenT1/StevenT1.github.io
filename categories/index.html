@@ -48,7 +48,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
-
+<script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').then(function (registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }).catch(function (err) {
+              console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+  }
+</script>
 
 <body>
   <header style="height: 60vh;">
@@ -190,7 +200,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju4e001ahe3x4wpi9mvs" role="tab" data-toggle="collapse" href="#collapse-ckznuju4e001ahe3x4wpi9mvs"
+        id="heading-ckznv8t650013d43x6fka5a3t" role="tab" data-toggle="collapse" href="#collapse-ckznv8t650013d43x6fka5a3t"
         aria-expanded="false"
       >
         浏览器
@@ -198,15 +208,22 @@
       </a>
       <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" class="category-count col-2 col-md-1">
         <i class="iconfont icon-articles"></i>
-        <span>6</span>
+        <span>7</span>
       </a>
       <div class="category-collapse">
         
           
-  <div id="collapse-ckznuju4e001ahe3x4wpi9mvs" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju4e001ahe3x4wpi9mvs">
+  <div id="collapse-ckznv8t650013d43x6fka5a3t" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t650013d43x6fka5a3t">
     
     
+    
+      
+      
+        <a href="/2022/02/15/browser/webWorker%E6%98%AF%E4%B8%AA%E5%95%A5%EF%BC%9F/" class="list-group-item list-group-item-action">
+          <span class="category-post">webWorker是个啥？</span>
+        </a>
+      
     
       
       
@@ -261,7 +278,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju4c0015he3xax409adk" role="tab" data-toggle="collapse" href="#collapse-ckznuju4c0015he3xax409adk"
+        id="heading-ckznv8t64000yd43xc4gf4vsh" role="tab" data-toggle="collapse" href="#collapse-ckznv8t64000yd43xc4gf4vsh"
         aria-expanded="false"
       >
         复习
@@ -274,8 +291,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckznuju4c0015he3xax409adk" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju4c0015he3xax409adk">
+  <div id="collapse-ckznv8t64000yd43xc4gf4vsh" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t64000yd43xc4gf4vsh">
     
     
     
@@ -311,7 +328,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju42000mhe3x97wg8s72" role="tab" data-toggle="collapse" href="#collapse-ckznuju42000mhe3x97wg8s72"
+        id="heading-ckznv8t62000md43x21qsfd7i" role="tab" data-toggle="collapse" href="#collapse-ckznv8t62000md43x21qsfd7i"
         aria-expanded="false"
       >
         手写
@@ -324,8 +341,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckznuju42000mhe3x97wg8s72" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju42000mhe3x97wg8s72">
+  <div id="collapse-ckznv8t62000md43x21qsfd7i" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t62000md43x21qsfd7i">
     
     
     
@@ -354,7 +371,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju43000qhe3x1uga1ej0" role="tab" data-toggle="collapse" href="#collapse-ckznuju43000qhe3x1uga1ej0"
+        id="heading-ckznv8t63000sd43x4mwjftby" role="tab" data-toggle="collapse" href="#collapse-ckznv8t63000sd43x4mwjftby"
         aria-expanded="false"
       >
         服务器
@@ -367,8 +384,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckznuju43000qhe3x1uga1ej0" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju43000qhe3x1uga1ej0">
+  <div id="collapse-ckznv8t63000sd43x4mwjftby" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t63000sd43x4mwjftby">
     
     
     
@@ -397,43 +414,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju3r0004he3x0b4e4ddo" role="tab" data-toggle="collapse" href="#collapse-ckznuju3r0004he3x0b4e4ddo"
-        aria-expanded="false"
-      >
-        restful
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/restful/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse">
-        
-          
-  <div id="collapse-ckznuju3r0004he3x0b4e4ddo" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju3r0004he3x0b4e4ddo">
-    
-    
-    
-      
-      
-        <a href="/2020/11/09/RESTFULL/" class="list-group-item list-group-item-action">
-          <span class="category-post">RESTFULL</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju3v0009he3x46m06c69" role="tab" data-toggle="collapse" href="#collapse-ckznuju3v0009he3x46m06c69"
+        id="heading-ckznv8t5s0004d43x1xed1h2o" role="tab" data-toggle="collapse" href="#collapse-ckznv8t5s0004d43x1xed1h2o"
         aria-expanded="false"
       >
         http
@@ -446,8 +427,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckznuju3v0009he3x46m06c69" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju3v0009he3x46m06c69">
+  <div id="collapse-ckznv8t5s0004d43x1xed1h2o" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t5s0004d43x1xed1h2o">
     
     
     
@@ -469,7 +450,43 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju3x000fhe3x6cibedt7" role="tab" data-toggle="collapse" href="#collapse-ckznuju3x000fhe3x6cibedt7"
+        id="heading-ckznv8t5w0009d43xgu1e5j1g" role="tab" data-toggle="collapse" href="#collapse-ckznv8t5w0009d43xgu1e5j1g"
+        aria-expanded="false"
+      >
+        restful
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/restful/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckznv8t5w0009d43xgu1e5j1g" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t5w0009d43xgu1e5j1g">
+    
+    
+    
+      
+      
+        <a href="/2020/11/09/RESTFULL/" class="list-group-item list-group-item-action">
+          <span class="category-post">RESTFULL</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckznv8t5x000fd43xbi2721pv" role="tab" data-toggle="collapse" href="#collapse-ckznv8t5x000fd43xbi2721pv"
         aria-expanded="false"
       >
         solid
@@ -482,8 +499,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckznuju3x000fhe3x6cibedt7" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju3x000fhe3x6cibedt7">
+  <div id="collapse-ckznv8t5x000fd43xbi2721pv" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t5x000fd43xbi2721pv">
     
     
     
@@ -505,7 +522,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckznuju44000whe3xc0bp5i71" role="tab" data-toggle="collapse" href="#collapse-ckznuju44000whe3xc0bp5i71"
+        id="heading-ckznv8t6f001qd43x2sml5lq9" role="tab" data-toggle="collapse" href="#collapse-ckznv8t6f001qd43x2sml5lq9"
         aria-expanded="false"
       >
         jenkins
@@ -518,8 +535,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckznuju44000whe3xc0bp5i71" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckznuju44000whe3xc0bp5i71">
+  <div id="collapse-ckznv8t6f001qd43x2sml5lq9" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckznv8t6f001qd43x2sml5lq9">
     
     
     

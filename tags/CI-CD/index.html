@@ -48,7 +48,17 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
-
+<script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').then(function (registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }).catch(function (err) {
+              console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+  }
+</script>
 
 <body>
   <header style="height: 80vh;">
