@@ -1,21 +1,22 @@
-importScripts("sw-toolbox.js");
+importScripts("./sw-toolbox.js");
 var cacheVersion = "-17104";
 var staticImageCacheName = "image" + cacheVersion;
 var staticAssetsCacheName = "assets" + cacheVersion;
 var contentCacheName = "content" + cacheVersion;
 var vendorCacheName = "vendor" + cacheVersion; 
 var maxEntries = 70; /* 最大缓存数量 */
-var maxAgeSeconds = 60*60*1; /* 最大缓存时间，单位(s) */
-/* 自行修改相应域名 */
-self.toolbox.router.get("/(.*)", self.toolbox.networkFirst, {
-    origin: /img\.tangruiping\.com/,
+
+// 图床缓存
+self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
+    origin: /proxy\.qiupo\.workers\.dev\/\?https\:\/\/raw\.githubusercontent\.com\/qiupo\/myImages\/master\/img/,
     cache: {
         name: staticImageCacheName,
         maxEntries: maxEntries
       }
   });
-self.toolbox.router.get("/(.*)", self.toolbox.networkFirst, {
-    origin: /www\.tangruiping\.com/,
+  // 内容缓存
+self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
+    origin: /qiupo\.github\.io/,
     cache: {
        name: contentCacheName,
        maxEntries: maxEntries
@@ -25,7 +26,7 @@ self.toolbox.router.get("/(.*)", self.toolbox.networkFirst, {
 
 /* 缓存cdn静态资源，自行修改对于你的静态文件资源路径 */
 /* cdn.tangruiping.com/lib/中存放静态文件资源则有如下写法 */
-self.toolbox.router.get("/lib/(.*)", self.toolbox.fastest, {origin: /cdn\.tangruiping\.com/,});
+// self.toolbox.router.get("/lib/(.*)", self.toolbox.fastest, {origin: /cdn\.qiupo.github.io\.com/,});
 
 
 /* NoCache */
