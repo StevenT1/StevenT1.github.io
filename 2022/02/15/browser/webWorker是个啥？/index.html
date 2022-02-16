@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>浏览器概述 - qiupoBlog</title>
+  <title>webWorker是个啥？ - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="浏览器概述">
+            <span class="h2" id="subtitle" title="webWorker是个啥？">
               
             </span>
 
@@ -191,8 +191,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-23 10:35" pubdate>
-        2020年11月23日 上午
+      <time datetime="2022-02-15 16:23" pubdate>
+        2022年2月15日 下午
       </time>
     </span>
   
@@ -203,7 +203,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      691 字
+      555 字
     </span>
   
 
@@ -243,79 +243,91 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">浏览器概述</h1>
+            <h1 style="display: none">webWorker是个啥？</h1>
             
             <div class="markdown-body">
-              <h2 id="现代浏览器历史"><a href="#现代浏览器历史" class="headerlink" title="现代浏览器历史"></a>现代浏览器历史</h2><ul>
-<li>1990年：蒂姆伯纳斯李开发了第一个网页浏览器WorldWideWeb，后来改名为Nexus。WorldWideWeb浏览器支持早期的HTMl标记语言，很简单，只支持文本、简单的样式表、电影、声音、图片等资源的显示。</li>
-<li>1993年：马克安德森领导的团队开发了第一个具有影响力的浏览器Mosaic，这就是后来有名的Netscape Navigator。</li>
-<li>1995年：微软推出了Internet Explorer，内置在windows系统中，和Netscape展开了第一次浏览器大战。</li>
-<li>1998年：Netscape公司因为微软的商业策略市场份额下降，随后开放了Netscape Navigator源代码，成立了Mozilla基金会，之后开启了第二次浏览器大战。同年1998年11月24日，美国在线（AOL）宣布将以42亿美元的免税股票交换方式收购Netscape Communications。</li>
-<li>2003年：苹果公司发布了Safari浏览器，时代华纳（前美国在线时代华纳）解散了Netscape。</li>
-<li>2005年：苹果公司开源了浏览器中的核心代码，基于此发起了一个新的开源项目Webkit</li>
-<li>2008年：谷歌以WebKit内核创建了一个新的浏览器项目Chromium，以此发布了Chrome浏览器。</li>
+              <h2 id="什么是web-worker"><a href="#什么是web-worker" class="headerlink" title="什么是web worker"></a>什么是web worker</h2><p>&emsp;&emsp;总所周知，javascript是一门单线程的语言，我们是不能像操作系统一样同时跑多个程序或者任务，那么势必会因此出现运行中因为某些计算大的任务而导致后面的操作被停滞，虽然有事件循环机制eventloop来解决平时的冲突问题(可以看<a target="_blank" rel="noopener" href="https://qiupo.github.io/2020/11/25/browser/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">事件循环</a>)，但是并不能解决根本问题。而web worker就是一种可以使操作并行执行的线程技术。通过web worker执行一些长时间运行的脚本或者处理计算密集型任务，同时又不会阻碍UI获取他脚本处理用户互动。<br>&emsp;&emsp;就这种功能来说的worker有两种，分别是专用 Worker 和 共享 Worker。专用worker就是只能被首次生成他的脚本使用，但是共享worker是可以被多个脚本使用的，他的上下文是sharedWorkerGlobalScop对象。就 Worker 来说，self 和 this 指的都是 Worker 的全局作用域。但是因为worker本身是独立的，所以worker只能操作javascript功能的子集。</p>
+<ul>
+<li>worker无法使用的部分<ul>
+<li>DOM</li>
+<li>window对象</li>
+<li>document对象</li>
+<li>parent对象</li>
+</ul>
+</li>
+<li>worker可以使用的部分<ul>
+<li>navigator对象</li>
+<li>location对象（只读）</li>
+<li>XMLHttpRequest</li>
+<li>setTimeout()/clearTimeout()和setInterval()/clearInterval()</li>
+<li>Appcache</li>
+<li>使用importScript()导入外部脚本</li>
+<li>生成其他web Worker</li>
+</ul>
+</li>
 </ul>
 <ol>
-<li>现代浏览器的特征</li>
-</ol>
-<ul>
-<li>网络</li>
-<li>资源管理</li>
-<li>网页浏览</li>
-<li>多页面管理</li>
-<li>插件和拓展</li>
-<li>账户和同步</li>
-<li>安全机制</li>
-<li>开发者工具</li>
-</ul>
-<ol start="2">
-<li>现代浏览器的结构</li>
-</ol>
-<ul>
-<li>用户界面（User Interface）</li>
-<li>浏览器引擎（Browser Engine）</li>
-<li>渲染引擎（Rendering Engine）</li>
-<li>网络（Networking）</li>
-<li>XML解析器（XML Parser）</li>
-<li>显示后端（Display Backend）</li>
-<li>数据持久层（Data Persistence）<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/liulanqi.png" srcset="/img/loading.gif"></li>
-</ul>
-<ol>
-<li>常见的渲染引擎<table>
-<thead>
-<tr>
-<th>渲染引擎</th>
-<th>浏览器</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Trident</td>
-<td>IE、Edge(旧)</td>
-</tr>
-<tr>
-<td>Gecko</td>
-<td>Firefox</td>
-</tr>
-<tr>
-<td>WebKit</td>
-<td>Safari</td>
-</tr>
-<tr>
-<td>Blink(WebKit fork)</td>
-<td>Chromium/Chrome/Opera/Edge</td>
-</tr>
-</tbody></table>
+<li><p>专用 worker<br> 专用worker很好处理，直接生成然后使用postMessage进行通信即可。<br> <strong>main.js</strong></p>
+ <pre><code class="hljs javascript"><span class="hljs-comment">//生成新的worker</span>
+<span class="hljs-keyword">if</span>(!!<span class="hljs-built_in">window</span>.Worker)&#123;
+    <span class="hljs-keyword">let</span> myWorker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">&#x27;worker.js&#x27;</span>);
+&#125;<span class="hljs-keyword">else</span>&#123;
+    <span class="hljs-comment">//...</span>
+&#125;
+<span class="hljs-comment">//发送消息</span>
+myWorker.postMessage([value1,value2])
+
+myWorker.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> result = e.data;
+    <span class="hljs-comment">//处理</span>
+&#125;
+
+<span class="hljs-comment">//可手动关闭</span>
+myWorker.terminate();
+</code></pre>
+<p> <strong>worker.js</strong></p>
+ <pre><code class="hljs javascript">self.addEventListener(<span class="hljs-string">&#x27;message&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;
+    <span class="hljs-comment">//发送数据</span>
+    <span class="hljs-keyword">let</span> data = e.data;
+    <span class="hljs-comment">//操作</span>
+
+    self.postMessage(data);
+    &#125;, <span class="hljs-literal">false</span>);
+
+
+<span class="hljs-comment">//或者直接</span>
+onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> data = e.data;
+    <span class="hljs-comment">//...</span>
+&#125;</code></pre>
+</li>
+<li><p>共享 worker<br> 共享 worker和专用worker很相似<br> main.js</p>
+ <pre><code class="hljs javascript"><span class="hljs-keyword">if</span>(!!<span class="hljs-built_in">window</span>.SharedWorker)&#123;
+    <span class="hljs-keyword">let</span> myWorker = <span class="hljs-keyword">new</span> SharedWorker(<span class="hljs-string">&#x27;worker.js&#x27;</span>)
+&#125;
+
+myWorker.port.postMessage([value1,value2]);
+
+myWorker.port.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> result = e.data;
+    <span class="hljs-comment">//...</span>
+&#125;</code></pre>
+<p> worker.js</p>
+ <pre><code class="hljs javascript">onconnect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> port = e.port[<span class="hljs-number">0</span>];
+    port.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;
+        <span class="hljs-keyword">let</span> result = e.data;
+        <span class="hljs-comment">// ... </span>
+        port.postMessage(result);
+    &#125;
+&#125;</code></pre>
+<p> 如果使用addEventListen方法，就需要使用</p>
+<blockquote>
+<p>port.start()  //worker线程<br> myWorker.port.start() //父线程</p>
+</blockquote>
+<p> 方法来调用</p>
 </li>
 </ol>
-<h2 id="渲染引擎结构和工作流程"><a href="#渲染引擎结构和工作流程" class="headerlink" title="渲染引擎结构和工作流程"></a>渲染引擎结构和工作流程</h2><h3 id="总流程"><a href="#总流程" class="headerlink" title="总流程"></a>总流程</h3><p><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/render.png" srcset="/img/loading.gif"><br>结合这张渲染引擎的过程，可以得知</p>
-<ul>
-<li>通过HTML/JavaScript/CSS等文件作为输入–&gt;</li>
-<li>解析HTML转换成DOM Tree，把HTML的标签啥的转成DOM树的节点–&gt;</li>
-<li>根据CSS的渲染规则和DOM树关联起来生成渲染树Render Tree–&gt;</li>
-<li>根据渲染树生成布局树Layout of Render Tree–&gt;</li>
-<li>最后绘制渲染树–&gt;</li>
-<li>展示页面<h3 id="每步详细流程"><a href="#每步详细流程" class="headerlink" title="每步详细流程"></a>每步详细流程</h3><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/render2.png" srcset="/img/loading.gif"><br>三大件的代码进入浏览器之后，会通过HTML解析器、CSS解析器、JavaScript解释器，最终生成最后的渲染树给到Layout去进行布局树的构建，最后通过最终的Tree进行Painting绘制得到最后的页面。<br>其中因为Javascript可以操作CSS和DOM元素，所以JavaScript可以打断整个流程，所以<strong>我们最好是把JavaScript放在整个页面的最后来执行</strong>。<br>当其中的<strong>DOM发生变化后，整个RenderTree和Layout of Render Tree都要重新生成，然后重新绘制</strong>。</li>
-</ul>
 
             </div>
             <hr>
@@ -346,18 +358,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/23/network/http%E5%8D%8F%E8%AE%AE/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">http协议初解</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/22/browser/%E8%B7%A8%E5%9F%9F/">
-                        <span class="hidden-mobile">浏览器同源策略</span>
+                      <a href="/2022/02/15/browser/serviceWorker%E7%A6%BB%E7%BA%BF%E7%BC%93%E5%AD%98/">
+                        <span class="hidden-mobile">serviceWork离线缓存</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -383,7 +389,7 @@
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: '14b0f5abf2f026d81d3fa1e26f6a2ec3',
+          id: 'fceb87647b6b57f87cf18913f5056671',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,
