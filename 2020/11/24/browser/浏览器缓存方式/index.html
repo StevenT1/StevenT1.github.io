@@ -245,6 +245,12 @@
             <!-- SEO header -->
             <h1 style="display: none">浏览器中的缓存方式</h1>
             
+              <p class="note note-info">
+                
+                  本文最后更新于：6 天前
+                
+              </p>
+            
             <div class="markdown-body">
               <p><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130133052.png" srcset="/img/loading.gif"></p>
 <h2 id="浏览器缓存（http缓存）"><a href="#浏览器缓存（http缓存）" class="headerlink" title="浏览器缓存（http缓存）"></a>浏览器缓存（http缓存）</h2><p>&emsp;&emsp;先看看浏览器发起请求和，内部是个什么流程：<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130152153.png" srcset="/img/loading.gif"><br>&emsp;&emsp;如图，浏览器会先问自己有没有缓存，缓存是否过期了，然后去问服务器关于资源的问题。如此我们先解决第一个问题，浏览器自己的缓存是放在什么地方了。<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201130152429.png" srcset="/img/loading.gif"><br>&emsp;&emsp;从浏览器的<code>network</code>里可以看到资源会放在<code>memory cache</code>和<code>disk cache</code>里。</p>

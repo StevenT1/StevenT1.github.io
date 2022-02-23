@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>复习知识--首屏优化 - qiupoBlog</title>
+  <title>首屏优化 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="复习知识--首屏优化">
+            <span class="h2" id="subtitle" title="首屏优化">
               
             </span>
 
@@ -243,7 +243,13 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">复习知识--首屏优化</h1>
+            <h1 style="display: none">首屏优化</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：4 天前
+                
+              </p>
             
             <div class="markdown-body">
               <h3 id="首屏优化"><a href="#首屏优化" class="headerlink" title="首屏优化"></a>首屏优化</h3><p>&emsp;&emsp;首先祭出神图，来源是 <a target="_blank" rel="noopener" href="https://proxy.qiupo.workers.dev/?https://www.w3.org/TR/navigation-timing/#sec-window.performance-attribute">w3.org</a><br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202111123837.png" srcset="/img/loading.gif" title="Processing Model"></p>
@@ -381,7 +387,7 @@
 <ul>
 <li>优化html代码<br>css放在顶部先加载，js放在底部后加载，减少DOM的总数</li>
 <li>优化js、css会改变dom树的文件<br>使用worker把重任务分离出去，避免影响dom，减少重排重绘的发生，使css易于载入</li>
-<li>优化动画<br>使用requestAnimationFrame来进行动画绘制，使用transform和opacity来实现一些简单的动画效果<h2 id="怎么监控性能"><a href="#怎么监控性能" class="headerlink" title="怎么监控性能"></a>怎么监控性能</h2>  获取performance.timing中的值，在使用img或者sendBean的方式进行上报。或者在某些需要自定义的位置使用performance.mark进行标记，并且使用performance.measure来计算时间差来进行上报。</li>
+<li>优化动画<br>使用requestAnimationFrame来进行动画绘制，使用transform和opacity来实现一些简单的动画效果<br><a href="">页面渲染发生了什么</a><h2 id="怎么监控性能"><a href="#怎么监控性能" class="headerlink" title="怎么监控性能"></a>怎么监控性能</h2>  获取performance.timing中的值，在使用img或者sendBean的方式进行上报。或者在某些需要自定义的位置使用performance.mark进行标记，并且使用performance.measure来计算时间差来进行上报。</li>
 <li>sendBeacon<br>  使用 sendBeacon() 方法会使用户代理在有机会时异步地向服务器发送数据，同时不会延迟页面的卸载或影响下一导航的载入性能。这就解决了提交分析数据时的所有的问题：数据可靠，传输异步并且不会影响下一页面的加载。  <pre><code class="hljs javascript"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;unload&#x27;</span>, logData, <span class="hljs-literal">false</span>);
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logData</span>(<span class="hljs-params"></span>) </span>&#123;
     navigator.sendBeacon(<span class="hljs-string">&quot;/request&quot;</span>, analyticsData);
@@ -432,8 +438,8 @@ imgReq.src = url;</code></pre></li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/09/%20review/%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86--vue%E7%AF%87/">
-                        <span class="hidden-mobile">复习知识--vue篇</span>
+                      <a href="/2022/02/09/%20review/vue%E7%AF%87/">
+                        <span class="hidden-mobile">vue篇</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -459,7 +465,7 @@ imgReq.src = url;</code></pre></li>
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: 'e7f6085521eb014ea4a61d73e892b6e0',
+          id: 'b4edd08780c437c03a0cc7326af6d2d9',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,

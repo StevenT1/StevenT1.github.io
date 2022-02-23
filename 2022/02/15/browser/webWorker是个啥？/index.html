@@ -245,6 +245,12 @@
             <!-- SEO header -->
             <h1 style="display: none">webWorker是个啥？</h1>
             
+              <p class="note note-info">
+                
+                  本文最后更新于：5 天前
+                
+              </p>
+            
             <div class="markdown-body">
               <h2 id="什么是web-worker"><a href="#什么是web-worker" class="headerlink" title="什么是web worker"></a>什么是web worker</h2><p>&emsp;&emsp;总所周知，javascript是一门单线程的语言，我们是不能像操作系统一样同时跑多个程序或者任务，那么势必会因此出现运行中因为某些计算大的任务而导致后面的操作被停滞，虽然有事件循环机制eventloop来解决平时的冲突问题(可以看<a target="_blank" rel="noopener" href="https://qiupo.github.io/2020/11/25/browser/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">事件循环</a>)，但是并不能解决根本问题。而web worker就是一种可以使操作并行执行的线程技术。通过web worker执行一些长时间运行的脚本或者处理计算密集型任务，同时又不会阻碍UI获取他脚本处理用户互动。<br>&emsp;&emsp;就这种功能来说的worker有两种，分别是专用 Worker 和 共享 Worker。专用worker就是只能被首次生成他的脚本使用，但是共享worker是可以被多个脚本使用的，他的上下文是sharedWorkerGlobalScop对象。就 Worker 来说，self 和 this 指的都是 Worker 的全局作用域。但是因为worker本身是独立的，所以worker只能操作javascript功能的子集。</p>
 <ul>
@@ -357,6 +363,12 @@ myWorker.port.onmessage = <span class="hljs-function"><span class="hljs-keyword"
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/02/16/%20review/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue组件通信</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
