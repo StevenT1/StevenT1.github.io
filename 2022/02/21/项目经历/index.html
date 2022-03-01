@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>迭代器和生成器 - qiupoBlog</title>
+  <title>项目经历 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="迭代器和生成器">
+            <span class="h2" id="subtitle" title="项目经历">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      521 字
+      1.7k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      17
        分钟
     </span>
   
@@ -236,98 +236,42 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">迭代器和生成器</h1>
+            <h1 style="display: none">项目经历</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：12 天前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="迭代器和生成器"><a href="#迭代器和生成器" class="headerlink" title="迭代器和生成器"></a>迭代器和生成器</h1><h2 id="迭代器是什么？"><a href="#迭代器是什么？" class="headerlink" title="迭代器是什么？"></a>迭代器是什么？</h2><p>&emsp;&emsp;在 javascript 中国呢，迭代器是一个对象。他定义了一个序列，并在终止时可能返回一个返回值。迭代器通过使用一个<code>next()</code>来实现<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol">可迭代协议</a>，对象可以自定义他们自己的迭代行为，比如在一个 for..of 中哪些值可以被便利到，在现有的类型中 array、Map、WeakMap 和 String 都有默认的迭代行为，是一个内置可迭代对象。但是 Object 就不行，他不是可迭代对的。<em>要可迭代，那么他必须实现一个<code>@@iterator</code>方法（一个无参数的函数，其返回值为一个符合迭代器协议的对象）</em><br>&emsp;&emsp;当迭代器创建之后，就可以通过重读的调用 next()来显式的迭代，当到结束位置后，<code>next()</code>返回<code>&#123;done:true&#125;</code>表示已经迭代完成了，也是消耗完了此次的迭代器，因为迭代一般就执行一次。</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeIterator</span>(<span class="hljs-params">start = <span class="hljs-number">0</span>, end = <span class="hljs-number">100</span>, step = <span class="hljs-number">1</span></span>) </span>&#123;
-  <span class="hljs-keyword">let</span> iteratorCount = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">return</span> &#123;
-    <span class="hljs-attr">next</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-      <span class="hljs-keyword">if</span> (start &lt; end) &#123;
-          <span class="hljs-keyword">let</span> res = &#123; <span class="hljs-attr">value</span>: start, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span> &#125;;
-          start += step;
-          iteratorCount++;
-          <span class="hljs-keyword">return</span> res;
-      &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">value</span>: iteratorCount, <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span> &#125;;
-      &#125;
-    &#125;
-  &#125;;
-&#125;
-<span class="hljs-keyword">let</span> iterator = makeIterator(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1</span>);
-<span class="hljs-keyword">let</span> target = iterator.next();
-<span class="hljs-keyword">while</span>(!target.done)&#123;
-    <span class="hljs-built_in">console</span>.log(target.value);
-    target = iterator.next();
-&#125;</code></pre>
+              <p>我在解决A问题的时候，预研过X方案和Y方案。基于B理由我选择了X方案，在这过程中我发现X方案存在C问题，于是去研究了X方案源码，找到了问题核心并学习了其思想原理。于是我根据自身的研究解决了这个问题，后续写了篇E文档发布在F平台上，并给原开发团队提了一个PR以推进解决此问题。</p>
+<h3 id="1-灵活屏窗口问题"><a href="#1-灵活屏窗口问题" class="headerlink" title="1. 灵活屏窗口问题"></a>1. 灵活屏窗口问题</h3><p>发现多窗口灵活屏存在管理混乱，多开窗口后打开运行速度变慢，数据之间隔离，打开窗口后首屏存在白屏的问题。基于以上问题，想到了几个方案：</p>
+<ul>
+<li> 借助预设的热点信息，对热点屏进行缓存，其他窗口都通过正常的打开方式进行打开</li>
+<li>提供统一的窗口类，使用该窗口类对窗口进行生成和销毁操作，在内部使用LRU淘汰算法对窗口进行统一管理，借助LRU的最近最少使用原则，将非热点窗口淘汰，维持自定义窗口数量的窗口，实现热点窗口的缓存状态，秒开热点窗口。在初次打开或者打开已淘汰的窗口时，通过窗口类中借助BrowserView生成预设或者自定义的骨架屏来替代白屏。同时构建一个中间层利用ipc通信的方式实现管理的窗口间可以互相通行，并管理数据<br>  对比发现，2号方案在窗口管理方面和可灵活新增功能的方面优于2号方案。在构建1号方案的过程中，发现在LRU淘汰上存在问题：<ul>
+<li>如果用户正巧在看一个将要被淘汰的窗口，此刻打开一个新窗口，将会覆盖此刻正在看的窗口</li>
+<li>如果用户因为某些原因打开了很多非热点窗口，那么热点窗口可能会被淘汰，导致命中率降低<br>通过研究lru和问题出现的本质，发现其实都出在lru进行窗口淘汰的时候一些操作会使得缓存收到污染。所以优化了一下原有的lru算法，通过在lru外部新增一层访问历史队列，只有当某窗口被打开的次数达到目标值则加入lru的缓存列表，同时构建一个备份列表标记窗口是否活跃，如果活跃则不进行淘汰操作，转而标记为即将淘汰，当窗口失活后立刻淘汰该窗口。通过以上方法自己整理了一个windowsManager的窗口管理类并发布在内网中，并且在团队中解决此问题并推进项目。<h3 id="2-拓扑图树状结构"><a href="#2-拓扑图树状结构" class="headerlink" title="2. 拓扑图树状结构"></a>2. 拓扑图树状结构</h3>新的需求中要求使用拓扑图来展示节点信息和状态，在选择如何使用时有几个方案：</li>
+</ul>
+</li>
+<li>使用echarts自带的树状结构来展示节点父子关系</li>
+<li>使用antv的树结构来展示</li>
+<li>自己构建一个树结构来展示<br>在这个需求中，我们需要节点信息可以根据我们的需要进行替换，及节点内容可以自定义并且可以支持各种内容的填充，其次最好可以实现节点可拖动。1方案中他可支持配置的方式限制较多而且可能会不满足一些需求，2方案中除了与1方案存在类似的问题，引入一个尚未使用的库也没有必要（虽然可以按需引入，但是为了这么一个功能使用新的库总觉得没有必要），所以只剩下自己新写一个组件的方案了，这个方案其实不难，实现一个树状结构不是问题，主要是树状结构内的页面可供我们自定义，用到vue中的插槽功能，即提前占了坑位，通过插槽的内容去填充坑位，这样坑位内的内容就可以被我们自定义了，然后在外部实现外部div的拖动操作，监听mousedown，mousemove，mouseup，监听到鼠标按下后，在此刻在mousemove里的方法可以执行，使用clientX和clientY来标识鼠标的移动坐标，使用offsetTop和offsetLeft来标识元素所在的位置，然后通过鼠标实时的位置信息-初始位置+元素位置，就可以让元素跟随鼠标进行移动了，然后在mousemove中监听mouseup并清除down和move的事件，即可以在移动过程中松开鼠标的同时，也停止元素跟随，然后早mousedown中监听mouseup并清除down和move的事件，这样可以保证点击但是未发生移动操作然后松开鼠标后，停止元素跟随。然后在使用的过程中，后端要求不使用树状结构来进行接口数据传值，于是使用扁平数据传值，然后前端通过读取id和parentId来将扁平结构转成树状结构，主要是构建了一个递归，找到parentId的节点，然后将对应的子节点加入父节点的children中，此刻递归调用自己的方法传入此节点的id当作下一个的parentId，递归出口就是再也找不到子节点了。完成功能后发布了一个组件包，并且在项目中应用了。<h3 id="3-图表性能优化"><a href="#3-图表性能优化" class="headerlink" title="3. 图表性能优化"></a>3. 图表性能优化</h3>在首页中，因为存在9个图表，当数据量不大时，展示问题不大，但是如果数据多了之后，页面加载就会很卡顿，并且在长期开启后会出现内存泄漏页面奔溃，为了解决这个问题想了几个对应的解决方法：</li>
+<li>只看趋势的图表，采用echarts自有的Largest-Triangle-Three-Bucket 算法，可以最大程度保证采样后线条的趋势，形状和极值,配置上<code>sampling: &quot;lttb&quot;</code>后即可大大减少需要渲染的点</li>
+<li>借助webwork将数据请求的接口和数据处理的内容放在单独的一个线程内，并且分片获取数据，获取一次数据后直接吐出数据来进行渲染，可以让页面的流畅度提升很多</li>
+<li>在某些图表中的数据点是可以点击的，这些事件在下次重新渲染时及时清除，同时因为echarts对象一旦生成不会有变动，所以echarts对象不需要放在vue的响应式数据中，同时在生成options时许多数据的临时变量应该及时手动制空，这样可以减少因为多次自动刷新页面而出现的内存泄漏问题</li>
+</ul>
 
-<h2 id="生成器？"><a href="#生成器？" class="headerlink" title="生成器？"></a>生成器？</h2><p>&emsp;&emsp;生成器允许你定义一个包含自有迭代算法的函数， 同时它可以自动维护自己的状态。 生成器函数使用 <code>function*</code>语法编写。 最初调用时，生成器函数不执行任何代码，而是返回一种称为Generator的迭代器。 通过调用生成器的下一个方法消耗值时，Generator函数将执行，直到遇到yield关键字。</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">makeRangeIterator</span>(<span class="hljs-params">start = <span class="hljs-number">0</span>, end = <span class="hljs-literal">Infinity</span>, step = <span class="hljs-number">1</span></span>) </span>&#123;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &lt; end; i += step) &#123;
-        <span class="hljs-keyword">yield</span> i;
-    &#125;
-&#125;
-<span class="hljs-keyword">var</span> a = makeRangeIterator(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
-a.next() <span class="hljs-comment">// &#123;value: 1, done: false&#125;</span>
-a.next() <span class="hljs-comment">// &#123;value: 3, done: false&#125;</span>
-a.next() <span class="hljs-comment">// &#123;value: 5, done: false&#125;</span>
-a.next() <span class="hljs-comment">// &#123;value: 7, done: false&#125;</span>
-a.next() <span class="hljs-comment">// &#123;value: 9, done: false&#125;</span>
-a.next() <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span></code></pre>
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0/">复习</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
-                    
-                  </div>
                 
               </div>
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/02/21/%E4%BD%8D%E6%93%8D%E4%BD%9C%E9%9B%86%E5%90%88/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">位操作集合</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/02/16/%20review/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
-                        <span class="hidden-mobile">vue组件通信</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
@@ -347,7 +291,7 @@ a.next() <span class="hljs-comment">// &#123;value: undefined, done: true&#125;<
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: 'a707703dde66ffb00c2fdec7bc442c1c',
+          id: 'aba9aff0bf8789d318d70e2a33ee07d7',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,
