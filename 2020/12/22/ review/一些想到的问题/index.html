@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>奇奇怪怪的题目(1) - qiupoBlog</title>
+  <title>一些想到的问题 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="奇奇怪怪的题目(1)">
+            <span class="h2" id="subtitle" title="一些想到的问题">
               
             </span>
 
@@ -189,13 +189,6 @@
     </span>
   
   
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-01 10:12" pubdate>
-        2022年2月1日 上午
-      </time>
-    </span>
-  
 </div>
 
 <div class="mt-1">
@@ -203,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.8k 字
     </span>
   
 
@@ -213,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      19
        分钟
     </span>
   
@@ -243,16 +236,22 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">奇奇怪怪的题目(1)</h1>
+            <h1 style="display: none">一些想到的问题</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：4 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <p>#奇奇怪怪的题目第一弹</p>
+              <p>1、Vue中父子组件的加载顺序？<br>&emsp;&emsp;父子组件在加载时</p>
+<ul>
+<li>如果子组件是同步加载的，那么父组件会先created然后在beforemounted时对子组件进行created，子组件根据在父组件中使用的顺序进行created，当所有子组件被mounted时，父组件才会进行mounted。</li>
+<li>如果子组件时懒加载模式，那么父组件会在created，mounted之后的beforeUpdate时根据子组件的顺序进行子组件的created和mounted</li>
+</ul>
+<p>2、浏览器每一帧发生了什么事情？<br><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20201223165207.png" srcset="/img/loading.gif"><br>3、页面适配怎么做？rem什么原理？<br>&emsp;&emsp;@media screen可以进行区分，也可以使用viewport进行缩放，或者使用rem根据html根元素的font-size进行缩放，很少使用em，因为em是根据父元素的font-size进行缩放，而且每个组件的em值可能都是不一样很难管理<br>4、贪心和分治说一下？<br>&emsp;&emsp;贪心通俗理解为找到局部最优解，在局部情况下我只找最接近结果的情况，然后所有情况加在一起得到最终最优解，该算法必须一系列子问题中每个子问题不依赖于后面子问题的解，我才能确定当前子问题的局部最优解不会影响最终解；<br>&emsp;&emsp;分治算法也是大问题拆解成小问题注意解决的情况。比较经典的就是快速排序算法，和归并排序，快排是通过找到一个mid值，然后把小于的放左边大于的放右边，然后左右再继续执行相同的操作来进行排序的，这就是把大的排序问题拆解成小的排序问题，直到最后解决了小问题，那么大问题也得到解决。归并中也是类似，把数分成两堆，然后解决小问题的排序问题，最后把小的排序结果进行归并操作得到最终排序结果。<br>5、Vue的生命周期有啥？<br>&emsp;&emsp;有几个重要阶段：beforeCreate，created，beforeMount，mounted，beforeUpdate，updated，beforeDestroy，destroyed，分别是组件创建，组件载入，组件更新，组件销毁，其中数据是在created时就被获得，载入时数据载入Dom<br>6、Webpack你是用什么进行打包优化的？<br>&emsp;&emsp;我用的是hard-sourse-webpack-plugin，因为他第一次要缓存所以第一次时速度没有变化，但是第二次的速度就能特别快，提升很显著，起码在80%以上，选这个是因为这玩意很简单，只需要导入后然后在plugins里加上new HardSourceWebpackPlugin就能实现基本功能，特别简单好用。</p>
+<p>#奇奇怪怪的问题</p>
 <h2 id="Proxy相对于Objec-defineProperty的优势？区别？"><a href="#Proxy相对于Objec-defineProperty的优势？区别？" class="headerlink" title="Proxy相对于Objec.defineProperty的优势？区别？"></a>Proxy相对于Objec.defineProperty的优势？区别？</h2><h2 id="常见的dom操作有哪些？"><a href="#常见的dom操作有哪些？" class="headerlink" title="常见的dom操作有哪些？"></a>常见的dom操作有哪些？</h2><h2 id="页面中哪些时候会进行重绘重排"><a href="#页面中哪些时候会进行重绘重排" class="headerlink" title="页面中哪些时候会进行重绘重排"></a>页面中哪些时候会进行重绘重排</h2><h2 id="Webpack的原理？有哪些好处？"><a href="#Webpack的原理？有哪些好处？" class="headerlink" title="Webpack的原理？有哪些好处？"></a>Webpack的原理？有哪些好处？</h2><h2 id="首屏加载优化方案？"><a href="#首屏加载优化方案？" class="headerlink" title="首屏加载优化方案？"></a>首屏加载优化方案？</h2><h2 id="有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？"><a href="#有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？" class="headerlink" title="有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？"></a>有哪些性能优化方法？为什么可以达到优化？怎么做性能监控？</h2><p><a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/performance/rendering/optimize-javascript-execution?hl=zh-cn">一个优化文章</a></p>
 <h2 id="重绘和回流-是什么，在什么时候发生，机制是什么，如果减少？"><a href="#重绘和回流-是什么，在什么时候发生，机制是什么，如果减少？" class="headerlink" title="重绘和回流 是什么，在什么时候发生，机制是什么，如果减少？"></a>重绘和回流 是什么，在什么时候发生，机制是什么，如果减少？</h2><h2 id="cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web-SQL又是什么"><a href="#cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web-SQL又是什么" class="headerlink" title="cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web SQL又是什么?"></a>cookies，sessionStorage和localStorage的区别？除了这些indexedDb和Web SQL又是什么?</h2><h2 id="vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？"><a href="#vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？" class="headerlink" title="vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？"></a>vue响应式原理的理解？vue3和vue2有什么区别，怎么看待官方推送版本变成了vue3？</h2><h2 id="vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？"><a href="#vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？" class="headerlink" title="vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？"></a>vue数据双向绑定的原理，哪些时候会失效，失效了又要如何处理？</h2><h2 id="浏览器工作原理–浏览器如何渲染页面？"><a href="#浏览器工作原理–浏览器如何渲染页面？" class="headerlink" title="浏览器工作原理–浏览器如何渲染页面？"></a>浏览器工作原理–浏览器如何渲染页面？</h2><h2 id="什么情况会导致内存泄漏？"><a href="#什么情况会导致内存泄漏？" class="headerlink" title="什么情况会导致内存泄漏？"></a>什么情况会导致内存泄漏？</h2><h2 id="浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？"><a href="#浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？" class="headerlink" title="浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？"></a>浏览器工作原理–浏览器如何实现垃圾回收？计数？三色标记？v8的新老空间？</h2><h2 id="浏览器兼容性问题及其解决方法"><a href="#浏览器兼容性问题及其解决方法" class="headerlink" title="浏览器兼容性问题及其解决方法"></a>浏览器兼容性问题及其解决方法</h2><h2 id="AMD和CMD和commonjs的区别"><a href="#AMD和CMD和commonjs的区别" class="headerlink" title="AMD和CMD和commonjs的区别"></a>AMD和CMD和commonjs的区别</h2><h2 id="什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化"><a href="#什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化" class="headerlink" title="什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化"></a>什么是虚拟dom？为什么虚拟dom能提升性能？vue和react的domdiff算法有啥区别？react各个版本针对dom又做了什么优化</h2><h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><h2 id="原型和原型链的理解"><a href="#原型和原型链的理解" class="headerlink" title="原型和原型链的理解"></a>原型和原型链的理解</h2><h2 id="vue和react的区别"><a href="#vue和react的区别" class="headerlink" title="vue和react的区别"></a>vue和react的区别</h2><h2 id="react中setState后发生了什么？"><a href="#react中setState后发生了什么？" class="headerlink" title="react中setState后发生了什么？"></a>react中setState后发生了什么？</h2><h2 id="shouldComponentUpdate作用"><a href="#shouldComponentUpdate作用" class="headerlink" title="shouldComponentUpdate作用"></a>shouldComponentUpdate作用</h2><h2 id="vue的keepAlive是什么"><a href="#vue的keepAlive是什么" class="headerlink" title="vue的keepAlive是什么"></a>vue的keepAlive是什么</h2><h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><h2 id="防抖和节流的使用场景和手写"><a href="#防抖和节流的使用场景和手写" class="headerlink" title="防抖和节流的使用场景和手写"></a>防抖和节流的使用场景和手写</h2><h2 id="Promise有何见解，手写一个包含promise-all-race-allSettled"><a href="#Promise有何见解，手写一个包含promise-all-race-allSettled" class="headerlink" title="Promise有何见解，手写一个包含promise.all race allSettled"></a>Promise有何见解，手写一个包含promise.all race allSettled</h2><h2 id="跨域和他的几个解决方法"><a href="#跨域和他的几个解决方法" class="headerlink" title="跨域和他的几个解决方法"></a>跨域和他的几个解决方法</h2><h2 id="javascript的值引用和值类型？涉及的深浅拷贝"><a href="#javascript的值引用和值类型？涉及的深浅拷贝" class="headerlink" title="javascript的值引用和值类型？涉及的深浅拷贝"></a>javascript的值引用和值类型？涉及的深浅拷贝</h2><h2 id="js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？"><a href="#js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？" class="headerlink" title="js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？"></a>js中有哪些数据结构？v8引擎中对对象的优化？快慢对象优化？weakMap是什么？为什么可以很快被回收？</h2><h2 id="http请求有哪些区别？是个什么流程，中间经过了哪些步骤？"><a href="#http请求有哪些区别？是个什么流程，中间经过了哪些步骤？" class="headerlink" title="http请求有哪些区别？是个什么流程，中间经过了哪些步骤？"></a>http请求有哪些区别？是个什么流程，中间经过了哪些步骤？</h2><h2 id="tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？"><a href="#tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？" class="headerlink" title="tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？"></a>tcp三次握手四次挥手做了什么？中间会产生什么攻击，怎么防范？</h2><h2 id="tcp和udp有啥区别？应用场景分别是什么？"><a href="#tcp和udp有啥区别？应用场景分别是什么？" class="headerlink" title="tcp和udp有啥区别？应用场景分别是什么？"></a>tcp和udp有啥区别？应用场景分别是什么？</h2><h2 id="websocket是怎么实现的？"><a href="#websocket是怎么实现的？" class="headerlink" title="websocket是怎么实现的？"></a>websocket是怎么实现的？</h2><h2 id="http1-0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？"><a href="#http1-0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？" class="headerlink" title="http1.0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？"></a>http1.0和2和3的区别是什么？有什么不同？有哪些常用的状态吗？</h2><h2 id="304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？"><a href="#304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？" class="headerlink" title="304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？"></a>304时是什么缓存？http缓存是什么？协商缓存和强缓存有哪些区别？分别是怎么工作的？什么时候用什么？由什么字段控制？</h2><h2 id="http常用的请求头有哪些？"><a href="#http常用的请求头有哪些？" class="headerlink" title="http常用的请求头有哪些？"></a>http常用的请求头有哪些？</h2><h2 id="fetch请求两次是为什么？OPTIONS预检请求是什么？"><a href="#fetch请求两次是为什么？OPTIONS预检请求是什么？" class="headerlink" title="fetch请求两次是为什么？OPTIONS预检请求是什么？"></a>fetch请求两次是为什么？OPTIONS预检请求是什么？</h2><h2 id="SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？"><a href="#SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？" class="headerlink" title="SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？"></a>SSL加密的原理？还有哪些常用的加密手段？AES对称加密和RSA非对称加密算法是如何使用的？</h2><h2 id="ajax的优缺点，原理？"><a href="#ajax的优缺点，原理？" class="headerlink" title="ajax的优缺点，原理？"></a>ajax的优缺点，原理？</h2><h2 id="axios-原理是什么？"><a href="#axios-原理是什么？" class="headerlink" title="axios 原理是什么？"></a>axios 原理是什么？</h2><h2 id="如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范"><a href="#如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范" class="headerlink" title="如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范"></a>如何进行xss攻击？如何防范？如何进行csrf攻击？如何防范</h2><h2 id="网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？"><a href="#网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？" class="headerlink" title="网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？"></a>网络层攻击有哪些？tcp报文攻击？udp报文攻击？ICMP报文攻击？</h2><p><a target="_blank" rel="noopener" href="https://cshihong.github.io/2019/05/14/%E7%BD%91%E7%BB%9C%E5%B1%82-TCP-UDP-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%E5%8E%9F%E7%90%86/">网络层(TCP/UDP)攻击与防御原理</a></p>
 <h2 id="应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？"><a href="#应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？" class="headerlink" title="应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？"></a>应用层攻击有哪些？dns报文攻击？HTTP报文攻击？其他的Flood攻击？</h2><p><a target="_blank" rel="noopener" href="https://cshihong.github.io/2019/05/14/%E5%BA%94%E7%94%A8%E5%B1%82-DNS-HTTP-HTTPS-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%E5%8E%9F%E7%90%86/">应用层(DNS/HTTP/HTTPS)攻击与防御原理</a></p>
@@ -284,7 +283,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%A2%98%E7%9B%AE/">题目</a>
+                      <a class="hover-with-bg" href="/tags/%E4%B8%80%E4%BA%9B%E6%83%B3%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">一些想到的问题</a>
                     
                   </div>
                 
@@ -297,9 +296,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/09/%20review/vue%E7%AF%87/">
+                      <a href="/2021/01/13/%E6%9C%8D%E5%8A%A1%E5%99%A8v2ray%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vue篇</span>
+                        <span class="hidden-mobile">服务器v2ray协议学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -307,8 +306,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/08/11/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-                        <span class="hidden-mobile">服务器环境配置</span>
+                      <a href="/2020/11/25/browser/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+                        <span class="hidden-mobile">Event Loop解读（待完善）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -334,7 +333,7 @@
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: 'f742f17366849774f93c2e91b4394171',
+          id: '6253de5bef25ff31d71d33331e16d5fc',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,
