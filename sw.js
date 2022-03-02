@@ -15,7 +15,7 @@ self.toolbox.router.get("/(.*)", self.toolbox.networkFirst, {
   },
 });
 // 内容缓存
-self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
+self.toolbox.router.get("/(.*)", self.toolbox.networkFirst, {
   origin: /qiupo\.github\.io/,
   // origin: /localhost/,
   cache: {
