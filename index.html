@@ -192,34 +192,47 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/03/02/network/http2-3/" target="_self">
+          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202203021404015.png" srcset="/img/loading.gif" alt="http2/3">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/23/%E8%AE%B0%E5%BD%95/">记录</a>
+        <a href="/2022/03/02/network/http2-3/">http2/3</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/23/%E8%AE%B0%E5%BD%95/">
+        <a href="/2022/03/02/network/http2-3/">
           
           
             
           
-          export class C &#123;
-    bar: Record&lt;&#x27;key1&#x27; | &#x27;key2&#x27; | &#x27;key100&#x27;, number&gt;
-&#125;
-
-// 业务代码文件
-// import C from &#x27;mod&#x27;
-
-const c = new C();
-
-// foo 函数用到了 c 实例的
+          http2/3http1.1存在的问题，为什么要有http2
+在http1.1中是支持持久连接的，多个请求可以复用一个tcp连接，同时管道pipelining可以让多个请求在一次tcp连接中发送，但是因为一个管道中一次只能处理一个请求，所以存在排队问题，如此就会造成阻塞问题。
+因为http连接是无状态的，所以每次请求头的内容都要大而全，所以经常会出现很多重复传输，例如user agent,Cook
         </a>
       </p>
 
       <div class="index-btm post-metas">
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/http/">http</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            
+          </div>
         
       </div>
     </article>
