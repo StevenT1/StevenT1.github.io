@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      623 字
+      691 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      11
        分钟
     </span>
   
@@ -240,31 +240,32 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：25 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
               <h2 id="all"><a href="#all" class="headerlink" title="all"></a>all</h2><p>Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 promise 都“完成（resolved）”或参数中不包含 promise 时回调完成（resolve）；如果参数中  promise 有一个失败（rejected），此实例回调失败（reject），失败的原因是第一个失败 promise 的结果。</p>
-<pre><code class="hljs reasonml">const promise1=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">1</span>);
-const promise2=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">2</span>);
-const promise3=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>reject(<span class="hljs-number">3</span>);
-const promise4=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">4</span>);
-const promise = <span class="hljs-literal">[<span class="hljs-identifier">promise1</span>,<span class="hljs-identifier">promise2</span>,<span class="hljs-identifier">promise3</span>,<span class="hljs-identifier">promise4</span>]</span>
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>all(promise).<span class="hljs-keyword">then</span>(<span class="hljs-keyword">val</span>=&gt;&#123;
-    <span class="hljs-keyword">val</span>.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each(<span class="hljs-params">r</span>=&gt;<span class="hljs-params">console</span>.<span class="hljs-params">log</span>(<span class="hljs-params">r</span>)</span>)
-&#125;).catch(res=&gt;&#123;
-    console.log(res)
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> promise1=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">const</span> promise2=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">const</span> promise3=<span class="hljs-built_in">Promise</span>.reject(<span class="hljs-number">3</span>);
+<span class="hljs-keyword">const</span> promise4=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">4</span>);
+<span class="hljs-keyword">const</span> promise = [promise1,promise2,promise3,promise4]
+<span class="hljs-built_in">Promise</span>.all(promise).then(<span class="hljs-function"><span class="hljs-params">val</span>=&gt;</span>&#123;
+    val.forEach(<span class="hljs-function"><span class="hljs-params">r</span>=&gt;</span><span class="hljs-built_in">console</span>.log(r))
+&#125;).catch(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+    <span class="hljs-built_in">console</span>.log(res)
 &#125;)
 <span class="hljs-comment">//3</span></code></pre>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>all的特性是只要有一个<code>rejected</code>就返回该失败结果，其他的都当作没发生。</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myAll</span>(<span class="hljs-params">promises</span>)</span>&#123;
+<pre><code class="hljs javascript"><span class="hljs-comment">// 串行执行</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myAll</span>(<span class="hljs-params">promises</span>)</span>&#123;
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-keyword">async</span> (r,j)=&gt;&#123;
     <span class="hljs-keyword">let</span> data = [],Err,isError=<span class="hljs-literal">false</span>;
         <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> promise <span class="hljs-keyword">of</span> promises)&#123;
         <span class="hljs-keyword">if</span>(isError) <span class="hljs-keyword">break</span>;
-                promise = promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span> ? promise : <span class="hljs-built_in">Promise</span>.resolve(promise);
-            <span class="hljs-keyword">await</span>   promise.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+        promise = promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span> ? promise : <span class="hljs-built_in">Promise</span>.resolve(promise);
+        <span class="hljs-keyword">await</span> promise.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
             data.push(res);
         &#125;,<span class="hljs-function"><span class="hljs-params">error</span>=&gt;</span>&#123;
           isError=<span class="hljs-literal">true</span>;
@@ -273,6 +274,24 @@ const promise = <span class="hljs-literal">[<span class="hljs-identifier">promis
         &#125;
     
     r(data);
+  &#125;)
+&#125;
+
+<span class="hljs-comment">//并发执行</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myAllConcurrence</span>(<span class="hljs-params">promises</span>)</span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r,j</span>)=&gt;</span>&#123;
+    <span class="hljs-keyword">let</span> data=[],isError=<span class="hljs-literal">false</span>,num=promises.length;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> promise <span class="hljs-keyword">of</span> promises)&#123;
+      <span class="hljs-keyword">if</span>(isError) <span class="hljs-keyword">break</span>;
+      promise = promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span> ? promise : <span class="hljs-built_in">Promise</span>.resolve(promise);
+      promise.then(<span class="hljs-function">(<span class="hljs-params">result</span>)=&gt;</span>&#123;
+        data.push(result);
+        num ? r(data) : num--;
+        &#125;).catch(<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>&#123;
+        isError=<span class="hljs-literal">true</span>;
+        j(e);
+      &#125;)
+    &#125;
   &#125;)
 &#125;</code></pre>
 <h2 id="race"><a href="#race" class="headerlink" title="race"></a>race</h2><p>Promise.race(iterable) 方法返回一个 promise，一旦迭代器中的某个promise解决或拒绝，返回的 promise就会解决或拒绝。</p>
@@ -302,13 +321,13 @@ const promise = <span class="hljs-literal">[<span class="hljs-identifier">promis
   &#125;)
 &#125;</code></pre>
 <h2 id="allsettled"><a href="#allsettled" class="headerlink" title="allsettled"></a>allsettled</h2><p>Promise.allSettled()方法返回一个在所有给定的promise都已经fulfilled或rejected后的promise，并带有一个对象数组，每个对象表示对应的promise结果。当有多个彼此不依赖的异步任务成功完成时，或者我们要得到每个promise的结果的时候，可以使用。</p>
-<pre><code class="hljs reasonml">const promise1=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">1</span>);
-const promise2=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">2</span>);
-const promise3=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>reject(<span class="hljs-number">3</span>);
-const promise4=<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>resolve(<span class="hljs-number">4</span>);
-const promise = <span class="hljs-literal">[<span class="hljs-identifier">promise1</span>,<span class="hljs-identifier">promise2</span>,<span class="hljs-identifier">promise3</span>,<span class="hljs-identifier">promise4</span>]</span>
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Promise</span>.</span></span>all<span class="hljs-constructor">Settled(<span class="hljs-params">promise</span>)</span>.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">val</span>=&gt;&#123;
-    <span class="hljs-keyword">val</span>.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each(<span class="hljs-params">re</span>=&gt;<span class="hljs-params">console</span>.<span class="hljs-params">log</span>(<span class="hljs-params">re</span>)</span>)
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> promise1=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">const</span> promise2=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">const</span> promise3=<span class="hljs-built_in">Promise</span>.reject(<span class="hljs-number">3</span>);
+<span class="hljs-keyword">const</span> promise4=<span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">4</span>);
+<span class="hljs-keyword">const</span> promise = [promise1,promise2,promise3,promise4]
+<span class="hljs-built_in">Promise</span>.allSettled(promise).then(<span class="hljs-function"><span class="hljs-params">val</span>=&gt;</span>&#123;
+    val.forEach(<span class="hljs-function"><span class="hljs-params">re</span>=&gt;</span><span class="hljs-built_in">console</span>.log(re))
 &#125;)
 <span class="hljs-comment">//&gt; Object &#123; status: &quot;fulfilled&quot;, value: 1 &#125;</span>
 <span class="hljs-comment">//&gt; Object &#123; status: &quot;fulfilled&quot;, value: 2 &#125;</span>
