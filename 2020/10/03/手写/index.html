@@ -240,13 +240,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 个月前
+                  本文最后更新于：12 天前
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="一些手写的内容汇总"><a href="#一些手写的内容汇总" class="headerlink" title="一些手写的内容汇总"></a>一些手写的内容汇总</h1><h2 id="1、通过XMLHttpRequest实现网络请求"><a href="#1、通过XMLHttpRequest实现网络请求" class="headerlink" title="1、通过XMLHttpRequest实现网络请求"></a>1、通过XMLHttpRequest实现网络请求</h2><pre><code class="hljs qml"><span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
-xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>,<span class="hljs-built_in">url</span>,<span class="hljs-literal">true</span>)<span class="hljs-comment">//异步，false同步</span>
+              <h1 id="一些手写的内容汇总"><a href="#一些手写的内容汇总" class="headerlink" title="一些手写的内容汇总"></a>一些手写的内容汇总</h1><h2 id="1、通过XMLHttpRequest实现网络请求"><a href="#1、通过XMLHttpRequest实现网络请求" class="headerlink" title="1、通过XMLHttpRequest实现网络请求"></a>1、通过XMLHttpRequest实现网络请求</h2><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>,url,<span class="hljs-literal">true</span>)<span class="hljs-comment">//异步，false同步</span>
 xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
     <span class="hljs-keyword">if</span>(xhr.readyState==<span class="hljs-number">4</span>&amp;&amp;xhr.state==<span class="hljs-number">200</span>)
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;成功&#x27;</span>)
@@ -370,127 +370,127 @@ xhr.send();</code></pre>
     <span class="hljs-keyword">return</span> bound;
 &#125;;</code></pre>
 <h2 id="3、手写数组深拷贝"><a href="#3、手写数组深拷贝" class="headerlink" title="3、手写数组深拷贝"></a>3、手写数组深拷贝</h2><p>深拷贝，主要是要对深层次的内容进行拷贝，拷贝到新的地址里。</p>
-<pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> deep<span class="hljs-constructor">Clone(<span class="hljs-params">obj</span>)</span>&#123;
-    <span class="hljs-keyword">if</span>(typeof obj!=&#x27;<span class="hljs-keyword">object</span>&#x27;<span class="hljs-operator"> || </span>obj ==null)&#123;
-    return obj
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepClone</span>(<span class="hljs-params">obj</span>)</span>&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> obj!=<span class="hljs-string">&#x27;object&#x27;</span> || obj ==<span class="hljs-literal">null</span>)&#123;
+    <span class="hljs-keyword">return</span> obj
   &#125;
   <span class="hljs-keyword">let</span> result;
-  <span class="hljs-keyword">if</span>(obj instanceof Array)&#123;
-    result = <span class="hljs-literal">[]</span>
+  <span class="hljs-keyword">if</span>(obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>)&#123;
+    result = []
   &#125;<span class="hljs-keyword">else</span>&#123;
     result = &#123;&#125;
   &#125;
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> obj)&#123;
-    <span class="hljs-keyword">if</span>(obj.has<span class="hljs-constructor">OwnProperty(<span class="hljs-params">key</span>)</span>)&#123;
-        result<span class="hljs-literal">[<span class="hljs-identifier">key</span>]</span>=deep<span class="hljs-constructor">Clone(<span class="hljs-params">obj</span>[<span class="hljs-params">key</span>])</span>
+    <span class="hljs-keyword">if</span>(obj.hasOwnProperty(key))&#123;
+        result[key]=deepClone(obj[key])
     &#125;
   &#125;
-  return result;
+  <span class="hljs-keyword">return</span> result;
 &#125;
 <span class="hljs-keyword">let</span> test = &#123;
-  aa:<span class="hljs-number">12</span>,
-  bb:&#x27;<span class="hljs-built_in">string</span>&#x27;,
-  cc:<span class="hljs-literal">[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]</span>,
-  dd:&#123;
-    ab:<span class="hljs-number">123</span>,
-    ac:&#x27;<span class="hljs-built_in">array</span>&#x27;,
-    bc:<span class="hljs-literal">[&#x27;<span class="hljs-number">2</span>&#x27;,&#x27;<span class="hljs-number">3</span>&#x27;]</span>
+  <span class="hljs-attr">aa</span>:<span class="hljs-number">12</span>,
+  <span class="hljs-attr">bb</span>:<span class="hljs-string">&#x27;string&#x27;</span>,
+  <span class="hljs-attr">cc</span>:[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],
+  <span class="hljs-attr">dd</span>:&#123;
+    <span class="hljs-attr">ab</span>:<span class="hljs-number">123</span>,
+    <span class="hljs-attr">ac</span>:<span class="hljs-string">&#x27;array&#x27;</span>,
+    <span class="hljs-attr">bc</span>:[<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>]
   &#125;
 &#125;
-test.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">__proto__</span>.</span></span>gg=<span class="hljs-number">123</span>;
-deep<span class="hljs-constructor">Clone(<span class="hljs-params">test</span>)</span>==test       <span class="hljs-comment">//false</span>
+test.__proto__.gg=<span class="hljs-number">123</span>;
+deepClone(test)==test       <span class="hljs-comment">//false</span>
 <span class="hljs-keyword">let</span> tt = test;
 tt==test;                                   <span class="hljs-comment">//true</span></code></pre>
 <h2 id="3、柯里化函数的实现"><a href="#3、柯里化函数的实现" class="headerlink" title="3、柯里化函数的实现"></a>3、柯里化函数的实现</h2><p>柯里化就是将多参数转换成单一参数的函数，要实现参数的分解，我们主要使用bind()来分解参数。</p>
-<pre><code class="hljs actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">currying</span><span class="hljs-params">(fn,length)</span></span>&#123;
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">currying</span>(<span class="hljs-params">fn,length</span>)</span>&#123;
 	length=length||fn.length;
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-rest_arg">...args</span>)</span></span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)</span>&#123;
     <span class="hljs-keyword">return</span> args.length &gt;= length ? 
-      fn.apply(<span class="hljs-keyword">this</span>,args):
-    currying(fn.bind(<span class="hljs-keyword">this</span>,...args),length-args.length);
+      fn.apply(<span class="hljs-built_in">this</span>,args):
+    currying(fn.bind(<span class="hljs-built_in">this</span>,...args),length-args.length);
   &#125;
 &#125;</code></pre>
 
 <p><img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/image.png" srcset="/img/loading.gif" alt="代码实例"></p>
 <h2 id="4、手写EventEmitter"><a href="#4、手写EventEmitter" class="headerlink" title="4、手写EventEmitter"></a>4、手写EventEmitter</h2><p>遇到这么个题目，嗯，题目，某人让我写一下，就写一下吧，照着文档算是能够实现一些功能了，但是有挺多要求没有实现的，但起码还是能达到一定要求的。<br>events（事件触发器）是nodejs中的提供事件触发的模块，events提供了类EventEmitter，EventEmitter 的核心就是事件触发与事件监听器功能的封装。提供了很多方法来进行监听器的绑定移除，这里我就只写其中几个简单的（主要是好实现，而且懒得做多了）。</p>
-<pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventEmitterOfme</span> </span>&#123;
-    <span class="hljs-keyword">constructor</span>() &#123;
-        <span class="hljs-keyword">this</span>.MaxListeners = <span class="hljs-number">10</span>;
-        <span class="hljs-keyword">this</span>.currentListeners = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">this</span>.events = [];
+<pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventEmitterOfme</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.MaxListeners = <span class="hljs-number">10</span>;
+        <span class="hljs-built_in">this</span>.currentListeners = <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">this</span>.events = [];
     &#125;
     <span class="hljs-comment">//为指定事件添加一个监听器到监听器数组的尾部。</span>
-    addListener(event, listener) &#123;
-        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events[event]) &#123;
-            console.log(<span class="hljs-string">&#x27;没有此监听器&#x27;</span>)
+    <span class="hljs-function"><span class="hljs-title">addListener</span>(<span class="hljs-params">event, listener</span>)</span> &#123;
+        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.events[event]) &#123;
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;没有此监听器&#x27;</span>)
         &#125; <span class="hljs-keyword">else</span> &#123;
-            <span class="hljs-keyword">this</span>.events[event].push(listener);
+            <span class="hljs-built_in">this</span>.events[event].push(listener);
         &#125;
     &#125;
     <span class="hljs-comment">//为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数。</span>
-    on(event, listener) &#123;
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentListeners + <span class="hljs-number">1</span> &gt; <span class="hljs-keyword">this</span>.MaxListeners) &#123;
-            console.log(<span class="hljs-string">&#x27;超过监听器上限&#x27;</span>)
+    <span class="hljs-function"><span class="hljs-title">on</span>(<span class="hljs-params">event, listener</span>)</span> &#123;
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.currentListeners + <span class="hljs-number">1</span> &gt; <span class="hljs-built_in">this</span>.MaxListeners) &#123;
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;超过监听器上限&#x27;</span>)
         &#125; <span class="hljs-keyword">else</span> &#123;
-            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events[event]) &#123;
-                <span class="hljs-keyword">this</span>.currentListeners++;
-                <span class="hljs-keyword">this</span>.events[event] = [listener];
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.events[event]) &#123;
+                <span class="hljs-built_in">this</span>.currentListeners++;
+                <span class="hljs-built_in">this</span>.events[event] = [listener];
             &#125; <span class="hljs-keyword">else</span> &#123;
-                <span class="hljs-keyword">this</span>.events[event].push(listener);
+                <span class="hljs-built_in">this</span>.events[event].push(listener);
             &#125;
         &#125;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
     &#125;
     <span class="hljs-comment">//为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器。</span>
-    once(event, listener) &#123;
-        let fn = (arg) =&gt; &#123;
+    <span class="hljs-function"><span class="hljs-title">once</span>(<span class="hljs-params">event, listener</span>)</span> &#123;
+        <span class="hljs-keyword">let</span> fn = <span class="hljs-function">(<span class="hljs-params">arg</span>) =&gt;</span> &#123;
             listener(arg);
-            <span class="hljs-keyword">this</span>.removeListener(event, fn);
+            <span class="hljs-built_in">this</span>.removeListener(event, fn);
         &#125;
-        <span class="hljs-keyword">this</span>.on(event, fn);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        <span class="hljs-built_in">this</span>.on(event, fn);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
     &#125;
     <span class="hljs-comment">//移除指定事件的某个监听器，监听器必须是该事件已经注册过的监听器。</span>
     <span class="hljs-comment">//它接受两个参数，第一个是事件名称，第二个是回调函数名称。</span>
-    removeListener(event, listener) &#123;
-        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events[event]) &#123;
-            console.log(`不存在$&#123;event&#125;监听器`)
+    <span class="hljs-function"><span class="hljs-title">removeListener</span>(<span class="hljs-params">event, listener</span>)</span> &#123;
+        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.events[event]) &#123;
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`不存在<span class="hljs-subst">$&#123;event&#125;</span>监听器`</span>)
         &#125; <span class="hljs-keyword">else</span> &#123;
-            <span class="hljs-keyword">this</span>.events[event].splice(<span class="hljs-keyword">this</span>.events[event].lastIndexOf(listener),<span class="hljs-number">1</span>);
+            <span class="hljs-built_in">this</span>.events[event].splice(<span class="hljs-built_in">this</span>.events[event].lastIndexOf(listener),<span class="hljs-number">1</span>);
         &#125;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
     &#125;
     <span class="hljs-comment">//移除所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。</span>
-    removeAllListeners(events) &#123;
-        <span class="hljs-keyword">if</span> (events === undefined) &#123;
-            <span class="hljs-keyword">this</span>.events = [];
-            <span class="hljs-keyword">this</span>.currentListeners = <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-title">removeAllListeners</span>(<span class="hljs-params">events</span>)</span> &#123;
+        <span class="hljs-keyword">if</span> (events === <span class="hljs-literal">undefined</span>) &#123;
+            <span class="hljs-built_in">this</span>.events = [];
+            <span class="hljs-built_in">this</span>.currentListeners = <span class="hljs-number">0</span>;
         &#125; <span class="hljs-keyword">else</span> &#123;
-            <span class="hljs-keyword">for</span>(let key of events) &#123;
-                delete <span class="hljs-keyword">this</span>.events[key];
-                <span class="hljs-keyword">this</span>.currentListeners--;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> events) &#123;
+                <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.events[key];
+                <span class="hljs-built_in">this</span>.currentListeners--;
             &#125;
         &#125;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
     &#125;
     <span class="hljs-comment">//默认情况下， EventEmitters 如果你添加的监听器超过 10 个就会输出警告信息。 setMaxListeners 函数用于提高监听器的默认限制的数量。</span>
-    setMaxListeners(n) &#123;
-        <span class="hljs-keyword">this</span>.MaxListeners = n;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    <span class="hljs-function"><span class="hljs-title">setMaxListeners</span>(<span class="hljs-params">n</span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.MaxListeners = n;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
     &#125;
     <span class="hljs-comment">//返回指定事件的监听器数组。</span>
-    listeners(event) &#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.events[event]
+    <span class="hljs-function"><span class="hljs-title">listeners</span>(<span class="hljs-params">event</span>)</span> &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.events[event]
     &#125;
-    allListeners() &#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.events;
+    <span class="hljs-function"><span class="hljs-title">allListeners</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.events;
     &#125;
     <span class="hljs-comment">//按监听器的顺序执行执行每个监听器，如果事件有注册监听返回 true，否则返回 false。</span>
-    emit(event, ...args) &#123;
-        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events[event])
+    <span class="hljs-function"><span class="hljs-title">emit</span>(<span class="hljs-params">event, ...args</span>)</span> &#123;
+        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.events[event])
             <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
         <span class="hljs-keyword">else</span> &#123;
-            <span class="hljs-keyword">this</span>.events[event].forEach((<span class="hljs-function"><span class="hljs-keyword">fun</span>, index) =&gt; <span class="hljs-keyword">fun</span>.<span class="hljs-title">call</span><span class="hljs-params">(this, args[index])</span></span>)
+            <span class="hljs-built_in">this</span>.events[event].forEach(<span class="hljs-function">(<span class="hljs-params">fun, index</span>) =&gt;</span> fun.call(<span class="hljs-built_in">this</span>, args[index]))
             <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
         &#125;
     &#125;
@@ -568,36 +568,36 @@ flat([<span class="hljs-number">1</span>,[<span class="hljs-number">2</span>,<sp
   &#125;
 &#125;</code></pre>
 <h2 id="9、手写继承"><a href="#9、手写继承" class="headerlink" title="9、手写继承"></a>9、手写继承</h2><p>JavaScript的继承虽然有class可以用extends来继承，但是如果需要我们使用原型链进行继承，我们就需要自己来实现了。<br>需要实现继承，需要我们把父类的原型链和静态属性继承到子类中，所以代码如下：</p>
-<pre><code class="hljs reasonml"><span class="hljs-comment">//父类</span>
-<span class="hljs-keyword">function</span> <span class="hljs-constructor">Parents(<span class="hljs-params">name</span>)</span>&#123;
-    this.name = name;
+<pre><code class="hljs javascript"><span class="hljs-comment">//父类</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parents</span>(<span class="hljs-params">name</span>)</span>&#123;
+    <span class="hljs-built_in">this</span>.name = name;
 &#125;
 <span class="hljs-comment">//父类原型链上的方法</span>
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parents</span>.</span></span>prototype.getName = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span>&#123;
-    console.log(this.name)
+Parents.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
 &#125;
 <span class="hljs-comment">//父类的静态方法</span>
-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parents</span>.</span></span>family = &#x27;Bob&#x27;;
-<span class="hljs-keyword">function</span> child(age)&#123;
+Parents.family = <span class="hljs-string">&#x27;Bob&#x27;</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">child</span>(<span class="hljs-params">age</span>)</span>&#123;
   <span class="hljs-comment">//继承父类的属性</span>
-    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parents</span>.</span></span>call(this);
+    Parents.call(<span class="hljs-built_in">this</span>);
 &#125;
 <span class="hljs-comment">//把父类的原型链拷贝一个进来，同时把构造函数修正为自己的构造函数，并且不能被修改</span>
-child.prototype = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Object</span>.</span></span>create(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parents</span>.</span></span>prototype,&#123;
-    constructor:&#123;
-    value:<span class="hljs-keyword">new</span> child<span class="hljs-literal">()</span>,
-    writeable:<span class="hljs-literal">false</span>
+child.prototype = <span class="hljs-built_in">Object</span>.create(Parents.prototype,&#123;
+    <span class="hljs-attr">constructor</span>:&#123;
+    <span class="hljs-attr">value</span>:<span class="hljs-keyword">new</span> child(),
+    <span class="hljs-attr">writeable</span>:<span class="hljs-literal">false</span>
   &#125;
 &#125;);
 <span class="hljs-comment">//获取父类的静态属性</span>
-<span class="hljs-keyword">let</span> keys = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Object</span>.</span></span>entries(Parents);
+<span class="hljs-keyword">let</span> keys = <span class="hljs-built_in">Object</span>.entries(Parents);
 <span class="hljs-comment">//把静态属性放进子类</span>
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;keys.length;i++)&#123;
-    <span class="hljs-keyword">let</span> key = keys<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span><span class="hljs-literal">[<span class="hljs-number">0</span>]</span>;
-  <span class="hljs-keyword">let</span> value = keys<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span><span class="hljs-literal">[<span class="hljs-number">1</span>]</span>;
-  child<span class="hljs-literal">[<span class="hljs-identifier">key</span>]</span> = value;
+    <span class="hljs-keyword">let</span> key = keys[i][<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">let</span> value = keys[i][<span class="hljs-number">1</span>];
+  child[key] = value;
 &#125;
-<span class="hljs-keyword">new</span> child<span class="hljs-literal">()</span>;</code></pre>
+<span class="hljs-keyword">new</span> child();</code></pre>
 <h2 id="10、手写new方法"><a href="#10、手写new方法" class="headerlink" title="10、手写new方法"></a>10、手写new方法</h2><p>new操作符做了哪些事情？</p>
 <ul>
 <li><p>创建一个新的对象</p>
@@ -607,15 +607,15 @@ child.prototype = <span class="hljs-module-access"><span class="hljs-module"><sp
 <li><p>新对象会绑定到函数调用的this</p>
 </li>
 <li><p>如果函数没有返回其他对象，那么new表达式中的函数会调用自动返回这个新对象</p>
-<pre><code class="hljs kotlin">function makeNew(<span class="hljs-function"><span class="hljs-keyword">fun</span>)&#123;</span>
-    <span class="hljs-keyword">if</span>(typeof <span class="hljs-function"><span class="hljs-keyword">fun</span> !== &quot;Object&quot;)&#123;</span>
-    <span class="hljs-keyword">throw</span> TypeError();
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeNew</span>(<span class="hljs-params">fun</span>)</span>&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> fun !== <span class="hljs-string">&quot;Object&quot;</span>)&#123;
+    <span class="hljs-keyword">throw</span> <span class="hljs-built_in">TypeError</span>();
   &#125;
-  let obj = Object.create(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">let</span> obj = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
   <span class="hljs-comment">//设置对象的原型（即内部 [[Prototype]] 属性）。</span>
-  Object.setPrototypeof(obj,<span class="hljs-keyword">fun</span>.prototype);
-  let result = <span class="hljs-keyword">fun</span>.apply(obj,Array.prototype.slice.call(arguments,<span class="hljs-number">1</span>));
-  <span class="hljs-keyword">if</span>(typeof result == <span class="hljs-string">&quot;Object&quot;</span> || (typeof result ==<span class="hljs-string">&quot;Function&quot;</span> &amp;&amp; result !==<span class="hljs-literal">null</span>))&#123;
+  <span class="hljs-built_in">Object</span>.setPrototypeof(obj,fun.prototype);
+  <span class="hljs-keyword">let</span> result = fun.apply(obj,<span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>,<span class="hljs-number">1</span>));
+  <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> result == <span class="hljs-string">&quot;Object&quot;</span> || (<span class="hljs-keyword">typeof</span> result ==<span class="hljs-string">&quot;Function&quot;</span> &amp;&amp; result !==<span class="hljs-literal">null</span>))&#123;
     <span class="hljs-keyword">return</span> result
   &#125;<span class="hljs-keyword">else</span>&#123;
     <span class="hljs-keyword">return</span> obj;
@@ -892,30 +892,30 @@ child.prototype = <span class="hljs-module-access"><span class="hljs-module"><sp
     <span class="hljs-built_in">module</span>.exports = MyPromise
   &#125; <span class="hljs-keyword">catch</span> (e) &#123;
   &#125;</code></pre>
-<h1 id="13、setInterval"><a href="#13、setInterval" class="headerlink" title="13、setInterval"></a>13、setInterval</h1><ul>
+<h2 id="13、setInterval"><a href="#13、setInterval" class="headerlink" title="13、setInterval"></a>13、setInterval</h2><ul>
 <li>setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式</li>
 <li>setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。</li>
 <li>由 setInterval() 返回的 ID 值可用作clearInterval()方法的参数。</li>
 </ul>
 <p>&emsp;&emsp;要实现这个函数，可以通过setTimeout()来实现，我们也可以修改实现的效果，比如说按照叠加的周期进行输出。实现过程很简单：</p>
-<pre><code class="hljs coffeescript"><span class="hljs-regexp">//</span>在外面定义一个timer标记我们的定时器，到时候可以关掉
-let timer = <span class="hljs-literal">null</span>;
-function mySetInterVal(fn, a, b) &#123;
+<pre><code class="hljs javascript"><span class="hljs-comment">//在外面定义一个timer标记我们的定时器，到时候可以关掉</span>
+<span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mySetInterVal</span>(<span class="hljs-params">fn, a, b</span>) </span>&#123;
     <span class="hljs-keyword">return</span> &#123;
-        start: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
-            timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+        <span class="hljs-attr">start</span>: <span class="hljs-function">() =&gt;</span> &#123;
+            timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
                 fn();
                 timer ? mySetInterVal(fn, a, b + b).start() : <span class="hljs-literal">null</span>;
             &#125;, a + b)
         &#125;,
-        end: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+        <span class="hljs-attr">end</span>: <span class="hljs-function">() =&gt;</span> &#123;
             <span class="hljs-built_in">clearTimeout</span>(timer);
             timer = <span class="hljs-literal">null</span>;
         &#125;
     &#125;
 &#125;
-mySetInterVal(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>),<span class="hljs-number">500</span>,<span class="hljs-number">500</span>&#125;).start();          <span class="hljs-regexp">//</span>开始
-mySetInterVal(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>),<span class="hljs-number">500</span>,<span class="hljs-number">500</span>&#125;).end();                <span class="hljs-regexp">//</span>结束</code></pre>
+mySetInterVal(<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>),<span class="hljs-number">500</span>,<span class="hljs-number">500</span>&#125;).start();          <span class="hljs-comment">//开始</span>
+mySetInterVal(<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>),<span class="hljs-number">500</span>,<span class="hljs-number">500</span>&#125;).end();                <span class="hljs-comment">//结束</span></code></pre>
             </div>
             <hr>
             <div>
