@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：15 天前
+                  本文最后更新于：4 分钟前
                 
               </p>
             
@@ -286,7 +286,7 @@
       promise = promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span> ? promise : <span class="hljs-built_in">Promise</span>.resolve(promise);
       promise.then(<span class="hljs-function">(<span class="hljs-params">result</span>)=&gt;</span>&#123;
         data.push(result);
-        num ? r(data) : num--;
+        num ? num-- : r(data);
         &#125;).catch(<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>&#123;
         isError=<span class="hljs-literal">true</span>;
         j(e);
