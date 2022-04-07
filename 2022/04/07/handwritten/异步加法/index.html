@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>间隔打印 - qiupoBlog</title>
+  <title>异步加法 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="间隔打印">
+            <span class="h2" id="subtitle" title="异步加法">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      107 字
+      399 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        分钟
     </span>
   
@@ -236,63 +236,88 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">间隔打印</h1>
+            <h1 style="display: none">异步加法</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：3 分钟前
+                  本文最后更新于：6 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">repeat</span>(<span class="hljs-params">func, times, wait</span>)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">str</span> =&gt;</span>&#123;
-        <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">while</span>(i&lt;times) &#123;
-            <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>&#123;
-                func(str);
-            &#125;,i*wait)
-            i++;
-        &#125;
-    &#125;
-&#125; <span class="hljs-comment">//实现打印4次，每次间隔 3000ms </span>
-<span class="hljs-keyword">const</span> repeatFun = repeat(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">4</span>, <span class="hljs-number">3000</span>);
-repeatFun(<span class="hljs-string">&#x27;Hello World&#x27;</span>)</code></pre>
-
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">repeat</span>(<span class="hljs-params">func, times, wait</span>) </span>&#123;
-    <span class="hljs-keyword">const</span> delay = <span class="hljs-function"><span class="hljs-params">time</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, time));
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>&#123;
-        <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">while</span>(i &lt; times) &#123;
-            delay(wait * i).then(<span class="hljs-function">() =&gt;</span> &#123;
-                func(str);
-            &#125;)
-            i++;
-        &#125;
-    &#125;
+              <p>实现下sum函数。注意不能使用加法，在sum中借助asyncAdd完成加法。尽可能的优化这个方法的时间。</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asyncAdd</span>(<span class="hljs-params">a, b, cb</span>) </span>&#123;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+    cb(<span class="hljs-literal">null</span>, a + b);
+  &#125;, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>);
+&#125;
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">total</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.time(<span class="hljs-string">&quot;1&quot;</span>);
+  <span class="hljs-keyword">const</span> res1 = <span class="hljs-keyword">await</span> sum2(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>);
+  <span class="hljs-keyword">const</span> res2 = <span class="hljs-keyword">await</span> sum2(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>);
+  <span class="hljs-keyword">return</span> [res1, res2];
+&#125;
+total().then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">&quot;1&quot;</span>);
+  <span class="hljs-built_in">console</span>.log(res);
+&#125;);
+<span class="hljs-comment">// 实现下sum函数。注意不能使用加法，在sum中借助asyncAdd完成加法。尽可能的优化这个方法的时间。</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>);
+  <span class="hljs-keyword">let</span> promises = [],
+    i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (i; i &lt; args.length; i += <span class="hljs-number">2</span>) &#123;
+    promises.push(
+      <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r, j</span>) =&gt;</span> &#123;
+        asyncAdd(args[i], args[i + <span class="hljs-number">1</span>] ?? <span class="hljs-number">0</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+          r(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);
+        &#125;);
+      &#125;)
+    );
+  &#125;
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all(promises).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (res.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> res[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> sum(...res);
+  &#125;);
 &#125;
 
-<span class="hljs-keyword">const</span> repeatFun = repeat(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">6</span>,<span class="hljs-number">1000</span>)
-repeatFun(<span class="hljs-string">&quot;hello world&quot;</span>);</code></pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum2</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>);
+  <span class="hljs-keyword">return</span> args.reduce(<span class="hljs-function">(<span class="hljs-params">pre, cur</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> pre.then(
+      <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r, j</span>) =&gt;</span> asyncAdd(d, cur, <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> r(b)))
+    );
+  &#125;, <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">0</span>));
+&#125;</code></pre>
+
+<p>假设本地机器无法做加减乘除法，需要通过远程请求让服务端来实现。<br>以加法为例，现有远程API的模拟实现</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> addRemote = <span class="hljs-keyword">async</span> (a, b) =&gt;
+  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> &#123;
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> resolve(a + b), <span class="hljs-number">1000</span>);
+  &#125;);
+
+<span class="hljs-comment">// 请实现本地的add方法，调用addRemote，能最优的实现输入数字的加法。</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...inputs</span>) </span>&#123;
+  <span class="hljs-comment">// 你的实现</span>
+  <span class="hljs-keyword">return</span> inputs.reduce(<span class="hljs-keyword">async</span> (pre, cur) =&gt; &#123;
+    <span class="hljs-keyword">return</span> pre.then(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> addRemote(d, cur));
+  &#125;, <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">0</span>));
+&#125;
+
+<span class="hljs-comment">// 请用示例验证运行结果:</span>
+add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(result); <span class="hljs-comment">// 3</span>
+&#125;);
+
+add(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(result); <span class="hljs-comment">// 10</span>
+&#125;);
+</code></pre>
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%89%8B%E5%86%99/">手写</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%89%8B%E5%86%99%E7%B3%BB%E5%88%97/">手写系列</a>
-                    
-                  </div>
                 
               </div>
               
@@ -303,12 +328,18 @@ repeatFun(<span class="hljs-string">&quot;hello world&quot;</span>);</code></pre
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/04/07/handwritten/compose/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">compose</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/06/algorithm/%E5%8C%B9%E9%85%8D%E9%97%AD%E5%90%88%E6%A0%87%E7%AD%BE/">
-                        <span class="hidden-mobile">匹配闭合标签</span>
+                      <a href="/2022/04/07/handwritten/%E5%8D%83%E5%88%86%E4%BD%8D/">
+                        <span class="hidden-mobile">千分位</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -334,7 +365,7 @@ repeatFun(<span class="hljs-string">&quot;hello world&quot;</span>);</code></pre
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: '62ffd536b9548845532a19e252187f3f',
+          id: '43716650abb502b71392a2712b3e015e',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,

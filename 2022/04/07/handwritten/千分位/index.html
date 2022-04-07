@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>请求池 - qiupoBlog</title>
+  <title>千分位 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="请求池">
+            <span class="h2" id="subtitle" title="千分位">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      432 字
+      50 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      1
        分钟
     </span>
   
@@ -236,118 +236,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">请求池</h1>
+            <h1 style="display: none">千分位</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：5 小时前
+                  本文最后更新于：17 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <h3 id="请求池"><a href="#请求池" class="headerlink" title="请求池"></a>请求池</h3><p>通过维护一个请求队列，在执行完一个请求后及时调用新的请求，维持时刻都有请求正在进行，并且最多只有上限数量的请求</p>
-<pre><code class="hljs javascript">
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRequest</span>(<span class="hljs-params">&#123; list = [], pool = <span class="hljs-number">5</span> &#125;</span>) </span>&#123;
-  <span class="hljs-comment">//TODO</span>
-  <span class="hljs-keyword">let</span> promises = [];
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">queue</span>(<span class="hljs-params">index = <span class="hljs-number">0</span></span>) </span>&#123;
-    <span class="hljs-comment">//执行到最后一个边界</span>
-    <span class="hljs-keyword">if</span> (index === list.length) &#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all(promises);
+              <p>整数金额千分位加逗号的</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNum</span>(<span class="hljs-params">num</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> res=<span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-keyword">while</span>(num!==<span class="hljs-number">0</span>)&#123;
+        <span class="hljs-keyword">let</span> n = num%<span class="hljs-number">1000</span>;
+        num-=n;
+        num/=<span class="hljs-number">1000</span>;
+        res=<span class="hljs-string">&#x27;,&#x27;</span>+n+res;
     &#125;
-    <span class="hljs-comment">//取出一个请求</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>, list[index]);
-    <span class="hljs-keyword">const</span> promise = list[index]();
-
-    <span class="hljs-comment">//执行进队列</span>
-    promises.push(doRequest(promise, index));
-
-    <span class="hljs-comment">//如果进入队列的长度到了上限，拿到队列中最快的请求</span>
-    <span class="hljs-keyword">let</span> race = <span class="hljs-built_in">Promise</span>.resolve();
-    <span class="hljs-keyword">if</span> (promises.length &gt;= pool) &#123;
-      race = <span class="hljs-built_in">Promise</span>.race(promises);
-    &#125;
-    <span class="hljs-comment">//在最快执行完的promise中调用下一次请求添加入队列</span>
-    <span class="hljs-keyword">return</span> race.then(<span class="hljs-function">() =&gt;</span> queue(index + <span class="hljs-number">1</span>));
-  &#125;
-
-  <span class="hljs-comment">//做一次请求</span>
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doRequest</span>(<span class="hljs-params">promise, index</span>) </span>&#123;
-    <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-keyword">async</span> (re, rj) =&gt; &#123;
-      <span class="hljs-keyword">try</span> &#123;
-        <span class="hljs-keyword">await</span> promise;
-        re(index);
-      &#125; <span class="hljs-keyword">catch</span> (e) &#123;
-        <span class="hljs-built_in">console</span>.log(index);
-        rj(e);
-      &#125;
-    &#125;).then(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-comment">//执行完删除队列里的自己</span>
-      <span class="hljs-keyword">let</span> index = promises.indexOf(p);
-      index !== -<span class="hljs-number">1</span> &amp;&amp; promises.splice(index, <span class="hljs-number">1</span>);
-    &#125;);
-    <span class="hljs-keyword">return</span> p;
-  &#125;
-
-  <span class="hljs-keyword">return</span> queue();
+    <span class="hljs-keyword">return</span> res.slice(<span class="hljs-number">1</span>);
 &#125;
-
-
-<span class="hljs-keyword">let</span> p = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;1000&quot;</span>);
-      resolve(<span class="hljs-number">1000</span>);
-    &#125;, <span class="hljs-number">1000</span>);
-  &#125;);
-&#125;;
-<span class="hljs-keyword">let</span> p1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;2000&quot;</span>);
-      resolve(<span class="hljs-number">2000</span>);
-    &#125;, <span class="hljs-number">7000</span>);
-  &#125;);
-&#125;;
-<span class="hljs-keyword">let</span> p2 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;3000&quot;</span>);
-      reject(<span class="hljs-number">3000</span>);
-    &#125;, <span class="hljs-number">3000</span>);
-  &#125;);
-&#125;;
-<span class="hljs-keyword">let</span> p3 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;4000&quot;</span>);
-      resolve(<span class="hljs-number">4000</span>);
-    &#125;, <span class="hljs-number">4000</span>);
-  &#125;);
-&#125;;
-<span class="hljs-keyword">let</span> p4 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;5000&quot;</span>);
-      resolve(<span class="hljs-number">5000</span>);
-    &#125;, <span class="hljs-number">3000</span>);
-  &#125;);
-&#125;;
-<span class="hljs-keyword">let</span> p5 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;6000&quot;</span>);
-      resolve(<span class="hljs-number">6000</span>);
-    &#125;, <span class="hljs-number">3000</span>);
-  &#125;);
-&#125;;
-
-<span class="hljs-built_in">console</span>.time(<span class="hljs-string">&quot;time&quot;</span>);
-createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5], <span class="hljs-attr">pool</span>: <span class="hljs-number">4</span> &#125;).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">&quot;time&quot;</span>);
-  <span class="hljs-built_in">console</span>.log(res);
-&#125;);
-</code></pre>
+<span class="hljs-built_in">console</span>.log(getNum(<span class="hljs-number">1232222222123</span>))
+<span class="hljs-built_in">console</span>.log(getNum(<span class="hljs-number">12345678</span>))</code></pre>
             </div>
             <hr>
             <div>
@@ -377,9 +287,9 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/06/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                      <a href="/2022/04/07/handwritten/%E5%BC%82%E6%AD%A5%E5%8A%A0%E6%B3%95/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">排序算法</span>
+                        <span class="hidden-mobile">异步加法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -387,8 +297,8 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/02/network/http2-3/">
-                        <span class="hidden-mobile">http2/3</span>
+                      <a href="/2022/04/07/handwritten/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
+                        <span class="hidden-mobile">进制转换</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -414,7 +324,7 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: 'ed631d5694c0f23b5cd2b34f87091c77',
+          id: 'f3c0134503be9914a19344511421abeb',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,

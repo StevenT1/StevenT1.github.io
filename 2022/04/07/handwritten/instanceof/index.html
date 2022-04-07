@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>匹配闭合标签 - qiupoBlog</title>
+  <title>instanceof - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="匹配闭合标签">
+            <span class="h2" id="subtitle" title="instanceof">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      189 字
+      65 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      1
        分钟
     </span>
   
@@ -236,42 +236,37 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">匹配闭合标签</h1>
+            <h1 style="display: none">instanceof</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：6 小时前
+                  本文最后更新于：2 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <pre><code class="hljs javascript"><span class="hljs-comment">//匹配闭合标签</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eg</span>(<span class="hljs-params">chars</span>) </span>&#123;
-    <span class="hljs-keyword">let</span> r = <span class="hljs-regexp">/\&lt;.+?\&gt;/g</span>;
-    <span class="hljs-keyword">let</span> res = chars.match(r);
-    <span class="hljs-keyword">let</span> x = [];
-    <span class="hljs-keyword">let</span> rr = <span class="hljs-regexp">/\&lt;\//</span>;
-    <span class="hljs-keyword">let</span> reg1 = <span class="hljs-regexp">/([^&lt;]+)$/</span>;
-    <span class="hljs-keyword">let</span> reg2 = <span class="hljs-regexp">/([^/]+)$/</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; res.length; i++) &#123;
-        <span class="hljs-keyword">if</span> (rr.test(res[i])) &#123;
-            <span class="hljs-keyword">let</span> temp = x.pop();
-            <span class="hljs-keyword">let</span> temp1 = temp.match(reg1, <span class="hljs-string">&#x27;&#x27;</span>)[<span class="hljs-number">0</span>].match(<span class="hljs-regexp">/\w*/</span>, <span class="hljs-string">&#x27;&#x27;</span>)
-            <span class="hljs-keyword">let</span> temp2 = res[i].match(reg2, <span class="hljs-string">&#x27;&#x27;</span>)[<span class="hljs-number">0</span>].match(<span class="hljs-regexp">/\w*/</span>, <span class="hljs-string">&#x27;&#x27;</span>)
-            <span class="hljs-keyword">if</span> (temp1[<span class="hljs-number">0</span>] != temp2[<span class="hljs-number">0</span>]) &#123;
-                <span class="hljs-keyword">return</span> [<span class="hljs-literal">false</span>, temp1[<span class="hljs-number">0</span>] + <span class="hljs-string">&#x27;没有闭合&#x27;</span>];
-            &#125;
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            x.push(res[i]);
+              <p>实现instanceof</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyInstanceof</span>(<span class="hljs-params">l,r</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> Lproto = l.__proto__;
+    <span class="hljs-keyword">const</span> Rproto = r.prototype;
+    <span class="hljs-keyword">while</span>(Lproto)&#123;
+        <span class="hljs-keyword">if</span>(Lproto === Rproto)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            Lproto=Lproto.__proto__;
         &#125;
     &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 &#125;
-<span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;/meta&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width initial - scale=1.0&quot;&gt;&lt;/meta&gt;&lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;&lt;div&gt;&lt;script src=&quot;20200901.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;&#x27;</span>
-<span class="hljs-built_in">console</span>.log(eg(str))
-
-</code></pre>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">a</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-built_in">this</span>.a = <span class="hljs-number">1</span>;
+    &#125;
+&#125;
+<span class="hljs-keyword">let</span> b= <span class="hljs-keyword">new</span> a;
+<span class="hljs-built_in">console</span>.log(MyInstanceof(b,<span class="hljs-built_in">Object</span>))
+<span class="hljs-built_in">console</span>.log(MyInstanceof(b,a))
+<span class="hljs-built_in">console</span>.log(MyInstanceof(b,<span class="hljs-built_in">Function</span>))</code></pre>
             </div>
             <hr>
             <div>
@@ -280,7 +275,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/categories/%E6%89%8B%E5%86%99/">手写</a>
                     
                   </div>
                 
@@ -288,7 +283,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+                      <a class="hover-with-bg" href="/tags/%E6%89%8B%E5%86%99%E7%B3%BB%E5%88%97/">手写系列</a>
                     
                   </div>
                 
@@ -301,18 +296,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/06/shouxie/%E9%97%B4%E9%9A%94%E6%89%93%E5%8D%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">间隔打印</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/06/algorithm/%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%95%B0%E5%AD%97/">
-                        <span class="hidden-mobile">字符转数字</span>
+                      <a href="/2022/04/07/handwritten/compose/">
+                        <span class="hidden-mobile">compose</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -338,7 +327,7 @@
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: '51b3c4ac0b2c9a02371818d8a946d8f9',
+          id: '02567072ba102fded5042c7e3f9e4497',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,
