@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>排序算法 - qiupoBlog</title>
+  <title>匹配闭合标签 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="排序算法">
+            <span class="h2" id="subtitle" title="匹配闭合标签">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      683 字
+      189 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      3
        分钟
     </span>
   
@@ -236,129 +236,42 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">排序算法</h1>
+            <h1 style="display: none">匹配闭合标签</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：23 分钟前
+                  本文最后更新于：38 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <pre><code class="hljs javascript"><span class="hljs-comment">//插入排序</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">insertSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
-    <span class="hljs-comment">//在前面已经排序好的位置里找到当前元素应该插入的位置</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) &#123;
-      <span class="hljs-keyword">if</span> (arr[i] &lt;= arr[j]) &#123;
-        <span class="hljs-keyword">let</span> temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      &#125;
-    &#125;
-  &#125;
-  <span class="hljs-keyword">return</span> arr;
-&#125;
-<span class="hljs-comment">//希尔排序</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shellSort</span>(<span class="hljs-params">array</span>) </span>&#123;
-  <span class="hljs-keyword">if</span> (array.length &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> array; <span class="hljs-comment">// 如果数组长度为1，直接返回</span>
-  <span class="hljs-keyword">var</span> gap = <span class="hljs-built_in">Math</span>.floor(array.length / <span class="hljs-number">2</span>);
-  <span class="hljs-keyword">while</span> (gap &gt; <span class="hljs-number">0</span>) &#123;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = gap; i &lt; array.length; i++) &#123;
-      <span class="hljs-keyword">var</span> j = i;
-      <span class="hljs-keyword">var</span> temp = array[j];
-      <span class="hljs-keyword">while</span> (j &gt; <span class="hljs-number">0</span> &amp;&amp; array[j - gap] &gt; temp) &#123;
-        <span class="hljs-comment">// 若array[j - gap]&gt;temp(即array[j]) 则互换位置</span>
-        array[j] = array[j - gap]; <span class="hljs-comment">// 这里可看成是将 j-gap 后移一个 gap 位 //TODO 插入排序这里是后移一位</span>
-        array[j - gap] = temp; <span class="hljs-comment">// 由于不像插入排序那样需要比较很多个元素，而是两个数的比较，此处将大得值往前移一个 gap 位即可</span>
-        j -= gap; <span class="hljs-comment">// 跳出循环的条件</span>
-      &#125;
-    &#125;
-    gap = <span class="hljs-built_in">Math</span>.floor(gap / <span class="hljs-number">2</span>); <span class="hljs-comment">// 减小增量</span>
-  &#125;
-  <span class="hljs-keyword">return</span> array;
-&#125;
+              <pre><code class="hljs javascript"><span class="hljs-comment">//匹配闭合标签</span>
 
-<span class="hljs-comment">//选择排序</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chooseSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
-    <span class="hljs-comment">//在剩下的位置找最小的然后替换到当前位置</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i + <span class="hljs-number">1</span>; j &lt; arr.length; j++) &#123;
-      <span class="hljs-keyword">if</span> (arr[j] &lt; arr[i]) &#123;
-        <span class="hljs-keyword">let</span> temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      &#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eg</span>(<span class="hljs-params">chars</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> r = <span class="hljs-regexp">/\&lt;.+?\&gt;/g</span>;
+    <span class="hljs-keyword">let</span> res = chars.match(r);
+    <span class="hljs-keyword">let</span> x = [];
+    <span class="hljs-keyword">let</span> rr = <span class="hljs-regexp">/\&lt;\//</span>;
+    <span class="hljs-keyword">let</span> reg1 = <span class="hljs-regexp">/([^&lt;]+)$/</span>;
+    <span class="hljs-keyword">let</span> reg2 = <span class="hljs-regexp">/([^/]+)$/</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; res.length; i++) &#123;
+        <span class="hljs-keyword">if</span> (rr.test(res[i])) &#123;
+            <span class="hljs-keyword">let</span> temp = x.pop();
+            <span class="hljs-keyword">let</span> temp1 = temp.match(reg1, <span class="hljs-string">&#x27;&#x27;</span>)[<span class="hljs-number">0</span>].match(<span class="hljs-regexp">/\w*/</span>, <span class="hljs-string">&#x27;&#x27;</span>)
+            <span class="hljs-keyword">let</span> temp2 = res[i].match(reg2, <span class="hljs-string">&#x27;&#x27;</span>)[<span class="hljs-number">0</span>].match(<span class="hljs-regexp">/\w*/</span>, <span class="hljs-string">&#x27;&#x27;</span>)
+            <span class="hljs-keyword">if</span> (temp1[<span class="hljs-number">0</span>] != temp2[<span class="hljs-number">0</span>]) &#123;
+                <span class="hljs-keyword">return</span> [<span class="hljs-literal">false</span>, temp1[<span class="hljs-number">0</span>] + <span class="hljs-string">&#x27;没有闭合&#x27;</span>];
+            &#125;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            x.push(res[i]);
+        &#125;
     &#125;
-  &#125;
-  <span class="hljs-keyword">return</span> arr;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 &#125;
-<span class="hljs-comment">//冒泡排序</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bubbleSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; arr.length; i++) &#123;
-    <span class="hljs-comment">//从0开始对比相邻位置的大小，大的冒泡上去</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; arr.length - i; j++) &#123;
-      <span class="hljs-keyword">if</span> (arr[j + <span class="hljs-number">1</span>] &lt; arr[j]) &#123;
-        <span class="hljs-keyword">let</span> temp = arr[j + <span class="hljs-number">1</span>];
-        arr[j + <span class="hljs-number">1</span>] = arr[j];
-        arr[j] = temp;
-      &#125;
-    &#125;
-  &#125;
-  <span class="hljs-keyword">return</span> arr;
-&#125;
-<span class="hljs-comment">//归并排序</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mergeSort</span>(<span class="hljs-params">arr, start, end</span>) </span>&#123;
-  <span class="hljs-keyword">if</span> (start &lt; end) &#123;
-    <span class="hljs-keyword">let</span> mid = ((start + end) / <span class="hljs-number">2</span>) &gt;&gt; <span class="hljs-number">0</span>;
-    <span class="hljs-comment">//分治左右处理</span>
-    arr = mergeSort(arr, start, mid);
-    arr = mergeSort(arr, mid + <span class="hljs-number">1</span>, end);
-    <span class="hljs-comment">//这里对一边的数组进行操作，经过上面的操作，这里的数组两边都是有序的</span>
-    <span class="hljs-keyword">let</span> left = start,
-      right = mid + <span class="hljs-number">1</span>,
-      tempArr = [];
-    <span class="hljs-comment">//数组两边进行归并</span>
-    <span class="hljs-keyword">while</span> (left &lt;= mid &amp;&amp; right &lt;= end) &#123;
-      <span class="hljs-keyword">if</span> (arr[left] &lt; arr[right]) &#123;
-        tempArr.push(arr[left++]);
-      &#125; <span class="hljs-keyword">else</span> &#123;
-        tempArr.push(arr[right++]);
-      &#125;
-    &#125;
-    <span class="hljs-comment">//哪边多出来了就拿出来合并</span>
-    left &gt; mid
-      ? tempArr.push(...arr.slice(right, end + <span class="hljs-number">1</span>))
-      : tempArr.push(...arr.slice(left, mid + <span class="hljs-number">1</span>));
-    <span class="hljs-comment">//把排好序的替换掉之前的</span>
-    arr.splice(start, end - start + <span class="hljs-number">1</span>, ...tempArr);
-  &#125;
-  <span class="hljs-keyword">return</span> arr;
-&#125;
-<span class="hljs-comment">//快速排序</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quickSort</span>(<span class="hljs-params">arr, start, end</span>) </span>&#123;
-  <span class="hljs-keyword">if</span> (start &lt; end) &#123;
-    <span class="hljs-keyword">let</span> left = start,
-      right = end;
-    <span class="hljs-keyword">let</span> temp = arr[left];
-    <span class="hljs-comment">//左右分别找，大的放左边，小的放右边</span>
-    <span class="hljs-keyword">while</span> (left &lt; right) &#123;
-      <span class="hljs-keyword">while</span> (arr[right] &gt;= temp &amp;&amp; left &lt; right) &#123;
-        right--;
-      &#125;
-      arr[left] = arr[right];
-      <span class="hljs-keyword">while</span> (arr[left] &lt;= temp &amp;&amp; left &lt; right) &#123;
-        left++;
-      &#125;
-      arr[right] = arr[left];
-    &#125;
-    arr[left] = temp;
-    <span class="hljs-comment">//分治，左右的递归继续操作</span>
-    arr = quickSort(arr, start, left - <span class="hljs-number">1</span>);
-    arr = quickSort(arr, left + <span class="hljs-number">1</span>, end);
-  &#125;
-  <span class="hljs-keyword">return</span> arr;
-&#125;</code></pre>
+<span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;/meta&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width initial - scale=1.0&quot;&gt;&lt;/meta&gt;&lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;&lt;div&gt;&lt;script src=&quot;20200901.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;&#x27;</span>
+<span class="hljs-built_in">console</span>.log(eg(str))
+
+</code></pre>
             </div>
             <hr>
             <div>
@@ -388,9 +301,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/06/%E7%AE%97%E6%B3%95/%E5%88%A4%E6%96%AD%E5%9B%9E%E6%96%87/">
+                      <a href="/2022/04/06/%E9%97%B4%E9%9A%94%E6%89%93%E5%8D%B0/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">判断回文</span>
+                        <span class="hidden-mobile">间隔打印</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -398,8 +311,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/28/%E8%AF%B7%E6%B1%82%E6%B1%A0/">
-                        <span class="hidden-mobile">请求池</span>
+                      <a href="/2022/04/06/algorithm/%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%95%B0%E5%AD%97/">
+                        <span class="hidden-mobile">字符转数字</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -425,7 +338,7 @@
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: 'dd86a203cea14f4d09f75d0a0158e365',
+          id: '51b3c4ac0b2c9a02371818d8a946d8f9',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,
