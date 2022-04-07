@@ -192,6 +192,53 @@
   <div class="row mx-auto index-card">
     
     
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/28/%E8%AF%B7%E6%B1%82%E6%B1%A0/">请求池</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/28/%E8%AF%B7%E6%B1%82%E6%B1%A0/">
+          
+          
+            
+          
+          请求池通过维护一个请求队列，在执行完一个请求后及时调用新的请求，维持时刻都有请求正在进行，并且最多只有上限数量的请求
+
+function createRequest(&#123; list = [], pool = 5 &#125;) &#123;
+  //TODO
+  let promises = [];
+  function queue(index = 0) &#123;
+    //执行到最
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%89%8B%E5%86%99/">手写</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%8B%E5%86%99%E7%B3%BB%E5%88%97/">手写系列</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2022/03/02/network/http2-3/" target="_self">
           <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202203021404015.png" srcset="/img/loading.gif" alt="http2/3">
@@ -626,58 +673,6 @@ props最简单的一种方式，通过 props 来实现父组件向子组件传�
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/vue/">vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/09/20/javascript%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2/" target="_self">
-          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202211015601.png" srcset="/img/loading.gif" alt="javascript隐式转换">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/20/javascript%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2/">javascript隐式转换</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/20/javascript%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2/">
-          
-          
-            
-          
-          JavaScript 的隐式转换会发生在比较和运算的时候，比如++ – - + == &gt; &lt; &gt;= &lt;=中，在执行代码时，如果值不是数字类型就会发生隐式转换，所以会出现很多奇怪的情况，在此进行一些想法的记录。
-一元运算符递增递减-- ++加减+-
-
-都是数字正常操作
-只要有一个字符串，管你是什么都转成字符串接上
-在有对象时先通过 Symbol.toPrimitive 找到原
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/javascript/">javascript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2/">隐式转换</a>
             
           </div>
         
