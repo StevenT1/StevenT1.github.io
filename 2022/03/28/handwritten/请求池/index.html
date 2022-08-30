@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.3k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      20
        分钟
     </span>
   
@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：12 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -330,8 +330,8 @@
 <span class="hljs-keyword">let</span> p1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;2000&quot;</span>);
-      resolve(<span class="hljs-number">2000</span>);
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;7000&quot;</span>);
+      resolve(<span class="hljs-number">7000</span>);
     &#125;, <span class="hljs-number">7000</span>);
   &#125;);
 &#125;;
@@ -405,6 +405,8 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
         <span class="hljs-keyword">let</span> promises = urls.splice(<span class="hljs-number">0</span>, limit).map(<span class="hljs-function">(<span class="hljs-params">element, index</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">return</span> loadImg(element).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
                 <span class="hljs-keyword">return</span> index;
+            &#125;,<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+              <span class="hljs-keyword">return</span> index;
             &#125;)
         &#125;);
         <span class="hljs-keyword">let</span> queue = <span class="hljs-function"><span class="hljs-params">i</span>=&gt;</span>&#123;
@@ -412,14 +414,24 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
             <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race(promises).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
               <span class="hljs-comment">//替换掉请求池中完成的一项</span>
                 promises[res] = loadImg(urls[i]).then(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span> &#123;
-                    <span class="hljs-keyword">return</span> res
+                    <span class="hljs-keyword">return</span> res;
+                &#125;,<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
+                  <span class="hljs-keyword">return</span> res;
                 &#125;)
-                <span class="hljs-comment">//如果排队的请求还有，进入下一个请求的操作</span>
+            &#125;,<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+              <span class="hljs-comment">//替换掉请求池中完成的一项</span>
+                promises[res] = loadImg(urls[i]).then(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span> &#123;
+                    <span class="hljs-keyword">return</span> res;
+                &#125;,<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
+                  <span class="hljs-keyword">return</span> res;
+                &#125;)
+            &#125;),<span class="hljs-keyword">finally</span>(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
+              <span class="hljs-comment">//如果排队的请求还有，进入下一个请求的操作</span>
                 <span class="hljs-keyword">if</span> (i &lt; urls.length - <span class="hljs-number">1</span>) &#123;
                     <span class="hljs-keyword">return</span> queue(i + <span class="hljs-number">1</span>)
                 &#125;<span class="hljs-keyword">else</span>&#123;
                 <span class="hljs-comment">//请求没有了，就使用all把最后三个直接全部结束</span>
-                    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all(promises);
+                    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.allSettled(promises);
                 &#125;
             &#125;);
             <span class="hljs-comment">//返回值是最后三个请求的index值</span>
