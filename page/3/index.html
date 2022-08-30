@@ -193,6 +193,158 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/03/02/network/http2-3/" target="_self">
+          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202203021404015.png" srcset="/img/loading.gif" alt="http2/3">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/02/network/http2-3/">http2/3</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/02/network/http2-3/">
+          
+          
+            
+          
+          http2/3http1.1存在的问题，为什么要有http2
+在http1.1中是支持持久连接的，多个请求可以复用一个tcp连接，同时管道pipelining可以让多个请求在一次tcp连接中发送，但是因为一个管道中一次只能处理一个请求，所以存在排队问题，如此就会造成阻塞问题。
+因为http连接是无状态的，所以每次请求头的内容都要大而全，所以经常会出现很多重复传输，例如user agent,Cook
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/http/">http</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/02/21/%E4%BD%8D%E6%93%8D%E4%BD%9C%E9%9B%86%E5%90%88/" target="_self">
+          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202210954364.png" srcset="/img/loading.gif" alt="位操作集合">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/21/%E4%BD%8D%E6%93%8D%E4%BD%9C%E9%9B%86%E5%90%88/">位操作集合</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/21/%E4%BD%8D%E6%93%8D%E4%BD%9C%E9%9B%86%E5%90%88/">
+          
+          
+            
+          
+          取绝对值function abs(x)&#123;
+	return (x^(x&gt;&gt;31))-(x&gt;&gt;31)
+&#125;
+取下取整function ceil(x)&#123;
+	return x&gt;&gt;0
+  		// x&lt;&lt;0
+  		// ~x
+&#125;
+function floor(x)&#123;
+	return (x+1)&gt;&gt;0
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%8D%E4%B9%A0/">复习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BD%8D%E6%93%8D%E4%BD%9C/">位操作</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/02/17/%20review/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/" target="_self">
+          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202171350318.png" srcset="/img/loading.gif" alt="迭代器和生成器">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/17/%20review/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/17/%20review/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">
+          
+          
+            
+          
+          迭代器和生成器迭代器是什么？&emsp;&emsp;在 javascript 中国呢，迭代器是一个对象。他定义了一个序列，并在终止时可能返回一个返回值。迭代器通过使用一个next()来实现可迭代协议，对象可以自定义他们自己的迭代行为，比如在一个 for..of 中哪些值可以被便利到，在现有的类型中 array、Map、WeakMap 和 String 都有默认的迭代行为，是一个内置可迭代对象。但是
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%A4%8D%E4%B9%A0/">复习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/">迭代器和生成器</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2022/02/16/%20review/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" target="_self">
           <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202202161443744.png" srcset="/img/loading.gif" alt="vue组件通信">
         </a>
@@ -533,194 +685,11 @@ props最简单的一种方式，通过 props 来实现父组件向子组件传�
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/08/11/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
-          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20210816134657.png" srcset="/img/loading.gif" alt="服务器环境配置">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/11/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">服务器环境配置</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/11/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-          
-          
-            
-          
-          一台全新的服务器从头开始配置记录首先明确我们需要做什么，需要安装哪些东西:
-
-
-
-
-需要做的
-
-
-
-1
-挂载数据盘
-
-
-2
-安装 git
-
-
-3
-安装 npm,node
-
-
-4
-安装 nrm
-
-
-5
-安装 oh-my-zsh，并且配置 zsh-autosuggestions
-
-
-6
-安装 powerlevel10k 完成配置
-
-
-7
-安装 nginx 和 pm2
-
-
-
-挂载硬盘因为我的服务器买的时
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%85%8D%E7%BD%AE/">配置</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/08/11/CICD/jenkins%E5%AE%89%E8%A3%85/" target="_self">
-          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20210811102025.png" srcset="/img/loading.gif" alt="jenkins安装">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/11/CICD/jenkins%E5%AE%89%E8%A3%85/">jenkins安装</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/11/CICD/jenkins%E5%AE%89%E8%A3%85/">
-          
-          
-            
-          
-          jenkins安装&emsp;&emsp;jenkins作为领先的开源自动化服务器，Jenkins 提供了数百个插件来支持任何项目的构建、部署和自动化。&emsp;&emsp;在官网有安装步骤 https://www.jenkins.io/doc/book/installing/linux/因为我的服务器是CentOS,所以需要以下命令：
-sudo wget -O /etc/yum.repos.d
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/jenkins/">jenkins</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/CI-CD/">CI/CD</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/01/13/%E6%9C%8D%E5%8A%A1%E5%99%A8v2ray%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0/" target="_self">
-          <img src="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/20210113091123.png" srcset="/img/loading.gif" alt="服务器v2ray协议学习">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/13/%E6%9C%8D%E5%8A%A1%E5%99%A8v2ray%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0/">服务器v2ray协议学习</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/13/%E6%9C%8D%E5%8A%A1%E5%99%A8v2ray%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0/">
-          
-          
-            
-          
-          v2ray搭建&emsp;&emsp;之前看过一些网络协议，在研究的时候就发现有这么个v2ray的工具，可以加密连接，所以拿来研究以下。
-
-首先你需要买一台服务器/轻量云服务器，哪个便宜买哪个，我自己测试之后，8M的带宽就能完全应付日常使用了，装上Centos系统。
-买好之后ssh连接到服务器上，可以用电脑自带的终端/cmd，或者用别的软件，我用的是Termius，比较方便，输入账号密码之后，进入
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/v2ray/">v2ray</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

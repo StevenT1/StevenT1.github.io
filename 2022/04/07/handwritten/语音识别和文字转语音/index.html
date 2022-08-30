@@ -17,7 +17,7 @@
   <meta name="description" content="秋坡博客">
   <meta name="author" content="Taoqiupo">
   <meta name="keywords" content="">
-  <title>事件冒泡 - qiupoBlog</title>
+  <title>语音识别和文字转语音 - qiupoBlog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="事件冒泡">
+            <span class="h2" id="subtitle" title="语音识别和文字转语音">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      171 字
+      637 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      12
        分钟
     </span>
   
@@ -236,38 +236,126 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">事件冒泡</h1>
+            <h1 style="display: none">语音识别和文字转语音</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 个月前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+              <p>语音识别和文字转语音的使用，SpeechRecognition和speechSynthesis的使用</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>给下面的列表绑定点击事件，要求每个li点击时返回li中的文本<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span> name1 <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span> name2 <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span> name3 <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span> name4 <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;say&quot;</span>&gt;</span>开始说话<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display: flex;flex-direction: column;justify-content: center;&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display: flex;&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;rate&quot;</span>&gt;</span>Rate:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;rate&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 20px;&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;range&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0.5&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;0.1&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;rate-x&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;rate-x&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display: flex;&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;pitch&quot;</span>&gt;</span>Pitch:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pitch&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 20px;&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;range&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;0.1&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;pitch-x&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;speak&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 100px;&quot;</span>&gt;</span>文字转语音<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span>
-<span class="javascript">    <span class="hljs-built_in">document</span>.getElementsByClassName(<span class="hljs-string">&#x27;list&#x27;</span>)[<span class="hljs-number">0</span>].addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;</span>
-<span class="javascript">        <span class="hljs-built_in">console</span>.log(e.target.innerText,e.currentTarget);</span>
-<span class="javascript">    &#125;,<span class="hljs-literal">false</span>)</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> sayDom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;say&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> textDom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;text&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;input&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> speakDom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;speak&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> rateDom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;rate-x&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> pitchDom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;pitch-x&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> rateValue = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.rate&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-keyword">const</span> pitchValue = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.pitch&#x27;</span>);</span>
+<span class="javascript">    <span class="hljs-built_in">console</span>.log(rateValue)</span>
+<span class="javascript">    <span class="hljs-keyword">let</span> recognition = <span class="hljs-built_in">window</span>.SpeechRecognition ? <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.SpeechRecogition() : <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.webkitSpeechRecognition();</span>
+<span class="javascript">    <span class="hljs-comment">// let speechRecognitionList = new SpeechGrammarList();</span></span>
+<span class="javascript">    <span class="hljs-comment">// speechRecognitionList.addFromString(grammar, 1);</span></span>
+<span class="javascript">    <span class="hljs-comment">// recognition.grammars = speechRecognitionList;</span></span>
+<span class="javascript">    recognition.continuous = <span class="hljs-literal">false</span>;</span>
+<span class="javascript">    recognition.lang = <span class="hljs-string">&#x27;zh-CN&#x27;</span>;</span>
+<span class="javascript">    recognition.interimResults = <span class="hljs-literal">true</span>;</span>
+<span class="javascript">    recognition.maxAlternatives = <span class="hljs-number">1</span>;</span>
+<span class="javascript">    sayDom.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;</span>
+<span class="javascript">        recognition.start();</span>
+<span class="javascript">    &#125;)</span>
+<span class="javascript">    recognition.onresult = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;</span>
+<span class="javascript"></span>
+<span class="javascript">        <span class="hljs-keyword">let</span> text = event.results[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].transcript;</span>
+<span class="javascript">        <span class="hljs-built_in">console</span>.log(text)</span>
+<span class="javascript">        textDom.textContent = <span class="hljs-string">&#x27;你说了: &#x27;</span> + text + <span class="hljs-string">&#x27;.&#x27;</span>;</span>
+<span class="javascript">    &#125;</span>
+<span class="javascript"></span>
+<span class="javascript">    recognition.onspeechend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;停止说话&#x27;</span>)</span>
+<span class="javascript">        recognition.stop();</span>
+<span class="javascript">    &#125;</span>
+<span class="javascript"></span>
+<span class="javascript">    recognition.onnomatch = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;</span>
+<span class="javascript">        diagnostic.textContent = <span class="hljs-string">&quot;无法识别&quot;</span>;</span>
+<span class="javascript">    &#125;</span>
+<span class="javascript"></span>
+<span class="javascript">    recognition.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;</span>
+<span class="javascript">        diagnostic.textContent = <span class="hljs-string">&#x27;识别错误&#x27;</span> + event.error;</span>
+<span class="javascript">    &#125;</span>
+<span class="javascript"></span>
+<span class="javascript">    <span class="hljs-keyword">const</span> speech = <span class="hljs-built_in">window</span>.speechSynthesis;</span>
+<span class="javascript">    speakDom.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;</span>
+<span class="javascript">        speak();</span>
+<span class="javascript">    &#125;)</span>
+<span class="javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">speak</span>(<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;语音类型&#x27;</span>, speech.getVoices());</span>
+<span class="javascript">        <span class="hljs-keyword">if</span> (speech.speaking) &#123;</span>
+<span class="javascript">            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#x27;speechSynthesis.speaking&#x27;</span>);</span>
+<span class="javascript">            <span class="hljs-keyword">return</span>;</span>
+<span class="javascript">        &#125;</span>
+<span class="javascript">        <span class="hljs-keyword">if</span> (input.value !== <span class="hljs-string">&#x27;&#x27;</span>) &#123;</span>
+<span class="javascript">            <span class="hljs-keyword">var</span> utterThis = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.SpeechSynthesisUtterance(input.value);</span>
+<span class="javascript">            utterThis.onend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;</span>
+<span class="javascript">                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;开始合成&#x27;</span>);</span>
+<span class="javascript">            &#125;</span>
+<span class="javascript">            utterThis.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;</span>
+<span class="javascript">                <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#x27;合成失败&#x27;</span>);</span>
+<span class="javascript">            &#125;</span>
+<span class="javascript">            <span class="hljs-keyword">var</span> selectedOption = <span class="hljs-string">&#x27;Google 普通话（中国大陆）&#x27;</span>;</span>
+<span class="javascript">            <span class="hljs-keyword">const</span> voices = speech.getVoices();</span>
+<span class="javascript">            <span class="hljs-built_in">console</span>.log(selectedOption)</span>
+<span class="javascript">            <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; voices.length; i++) &#123;</span>
+<span class="javascript">                <span class="hljs-keyword">if</span> (voices[i].name === selectedOption) &#123;</span>
+<span class="javascript">                    utterThis.voice = voices[i];</span>
+<span class="javascript">                    <span class="hljs-keyword">break</span>;</span>
+<span class="javascript">                &#125;</span>
+<span class="javascript">            &#125;</span>
+<span class="javascript">            utterThis.pitch = pitchDom.value;</span>
+<span class="javascript">            utterThis.rate = rateDom.value;</span>
+<span class="javascript">            speech.speak(utterThis);</span>
+<span class="javascript">        &#125;</span>
+<span class="javascript">    &#125;</span>
+<span class="javascript"></span>
+<span class="javascript">    pitchDom.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">        pitchValue.textContent = pitchDom.value;</span>
+<span class="javascript">    &#125;</span>
+<span class="javascript"></span>
+<span class="javascript">    rateDom.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">        rateValue.textContent = rateDom.value;</span>
+<span class="javascript">    &#125;</span>
 <span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
             </div>
             <hr>
@@ -282,13 +370,6 @@
                   </div>
                 
                 
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%89%8B%E5%86%99%E7%B3%BB%E5%88%97/">手写系列</a>
-                    
-                  </div>
-                
               </div>
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
@@ -298,9 +379,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/07/handwritten/%E5%A4%8D%E7%94%A8%E8%AF%B7%E6%B1%82/">
+                      <a href="/2022/04/07/handwritten/%E5%BC%82%E6%AD%A5%E5%8A%A0%E6%B3%95/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">复用请求</span>
+                        <span class="hidden-mobile">异步加法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -308,8 +389,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/07/handwritten/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E4%B8%B2/">
-                        <span class="hidden-mobile">最长公共子串</span>
+                      <a href="/2022/04/07/handwritten/%E5%BE%80%E5%A4%8D%E8%BF%90%E5%8A%A8/">
+                        <span class="hidden-mobile">往复运动</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -335,7 +416,7 @@
           repo: 'qiupo.github.io',
           owner: 'qiupo',
           admin: ["qiupo"],
-          id: '5302d9ee5a9c904d3ad5cae92e24f295',
+          id: '46ba2db78c7ded676a30f18bf6a63a15',
           language: 'zh-CN',
           labels: ["comment"],
           perPage: 10,
