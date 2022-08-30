@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      432 字
+      1.2k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      19
        分钟
     </span>
   
@@ -240,12 +240,39 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 个月前
+                  本文最后更新于：12 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <h3 id="请求池"><a href="#请求池" class="headerlink" title="请求池"></a>请求池</h3><p>通过维护一个请求队列，在执行完一个请求后及时调用新的请求，维持时刻都有请求正在进行，并且最多只有上限数量的请求</p>
+              <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>有8个图片资源的url，已经存储在数组urls中。</p>
+<p>urls类似于[‘<a target="_blank" rel="noopener" href="https://image1.png&/#39;">https://image1.png&#39;</a>, ‘<a target="_blank" rel="noopener" href="https://image2.png&/#39;">https://image2.png&#39;</a>, ….]</p>
+<p>而且已经有一个函数function loadImg，输入一个url链接，返回一个Promise，该Promise在图片下载完成的时候resolve，下载失败则reject。</p>
+<p>但有一个要求，任何时刻同时下载的链接数量不可以超过3个。<br>请写一段代码实现这个需求，要求尽可能快速地将所有图片下载完成。</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> urls = [
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting1.png&quot;</span>,
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting2.png&quot;</span>,
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting3.png&quot;</span>,
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting4.png&quot;</span>,
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting5.png&quot;</span>,
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn6.png&quot;</span>,
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn7.png&quot;</span>,
+  <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn8.png&quot;</span>,
+];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadImg</span>(<span class="hljs-params">url</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> img = <span class="hljs-keyword">new</span> Image();
+    img.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;一张图片加载完成&quot;</span>);
+      resolve(img);
+    &#125;;
+    img.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    	reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Could not load image at&#x27;</span> + url));
+    &#125;;
+    img.src = url;
+  &#125;);</code></pre>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>在实际项目中，经常会出现问题中的情况，我们需要请求很多资源或者进行很多请求，但是并发数过多会使得其他请求进入排队状态，从而影响页面的展示。这里我们就有必要使用一个限制请求的请求池维护请求。通过维护一个请求队列，在执行完一个请求后及时调用新的请求，维持时刻都有请求正在进行，并且最多只有上限数量的请求</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>最开始想到的方法，比较复杂</p>
 <pre><code class="hljs javascript">
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRequest</span>(<span class="hljs-params">&#123; list = [], pool = <span class="hljs-number">5</span> &#125;</span>) </span>&#123;
   <span class="hljs-comment">//TODO</span>
@@ -256,7 +283,6 @@
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all(promises);
     &#125;
     <span class="hljs-comment">//取出一个请求</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>, list[index]);
     <span class="hljs-keyword">const</span> promise = list[index]();
 
     <span class="hljs-comment">//执行进队列</span>
@@ -348,6 +374,61 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
   <span class="hljs-built_in">console</span>.log(res);
 &#125;);
 </code></pre>
+<p>优化后的方法，urls使用的网络上的图片，更加直观</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">let</span> urls = [
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting1.png&quot;</span>,
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting2.png&quot;</span>,
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting3.png&quot;</span>,
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting4.png&quot;</span>,
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting5.png&quot;</span>,
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn6.png&quot;</span>,
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn7.png&quot;</span>,
+        <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn8.png&quot;</span>,
+    ];
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadImg</span>(<span class="hljs-params">url</span>) </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">const</span> img = <span class="hljs-keyword">new</span> Image();
+            img.onload = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;一张图片加载完成&quot;</span>);
+                resolve(img);
+            &#125;;
+            img.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+                reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Could not load image at&#x27;</span> + url));
+            &#125;;
+            img.src = url;
+            img.width = <span class="hljs-string">&#x27;100&#x27;</span>
+            img.height = <span class="hljs-string">&#x27;200&#x27;</span>
+        &#125;);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRequest</span>(<span class="hljs-params">urls,limit</span>) </span>&#123;
+      <span class="hljs-comment">//先拿出最大数量的请求放进请求池</span>
+        <span class="hljs-keyword">let</span> promises = urls.splice(<span class="hljs-number">0</span>, limit).map(<span class="hljs-function">(<span class="hljs-params">element, index</span>) =&gt;</span> &#123;
+            <span class="hljs-keyword">return</span> loadImg(element).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+                <span class="hljs-keyword">return</span> index;
+            &#125;)
+        &#125;);
+        <span class="hljs-keyword">let</span> queue = <span class="hljs-function"><span class="hljs-params">i</span>=&gt;</span>&#123;
+          <span class="hljs-comment">//使用race去拿出最快完成的一项</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race(promises).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+              <span class="hljs-comment">//替换掉请求池中完成的一项</span>
+                promises[res] = loadImg(urls[i]).then(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span> &#123;
+                    <span class="hljs-keyword">return</span> res
+                &#125;)
+                <span class="hljs-comment">//如果排队的请求还有，进入下一个请求的操作</span>
+                <span class="hljs-keyword">if</span> (i &lt; urls.length - <span class="hljs-number">1</span>) &#123;
+                    <span class="hljs-keyword">return</span> queue(i + <span class="hljs-number">1</span>)
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-comment">//请求没有了，就使用all把最后三个直接全部结束</span>
+                    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all(promises);
+                &#125;
+            &#125;);
+            <span class="hljs-comment">//返回值是最后三个请求的index值</span>
+        &#125;
+       <span class="hljs-keyword">return</span> queue(<span class="hljs-number">0</span>)
+    &#125;
+    createRequest(urls,<span class="hljs-number">3</span>).then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;请求结束&#x27;</span>)
+    &#125;)</code></pre>
             </div>
             <hr>
             <div>

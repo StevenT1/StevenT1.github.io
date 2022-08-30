@@ -691,13 +691,10 @@ function insertSort(arr) &#123;
           
             
           
-          请求池通过维护一个请求队列，在执行完一个请求后及时调用新的请求，维持时刻都有请求正在进行，并且最多只有上限数量的请求
-
-function createRequest(&#123; list = [], pool = 5 &#125;) &#123;
-  //TODO
-  let promises = [];
-  function queue(index = 0) &#123;
-    //执行到最
+          问题有8个图片资源的url，已经存储在数组urls中。
+urls类似于[‘https://image1.png&#39;, ‘https://image2.png&#39;, ….]
+而且已经有一个函数function loadImg，输入一个url链接，返回一个Promise，该Promise在图片下载完成的时候resolve，下载失败则reject。
+但有一个要求，任何时刻同时下载的链接数量不
         </a>
       </p>
 
