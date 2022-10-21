@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -425,7 +425,7 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
                 &#125;,<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
                   <span class="hljs-keyword">return</span> res;
                 &#125;)
-            &#125;),<span class="hljs-keyword">finally</span>(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
+            &#125;).finally(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
               <span class="hljs-comment">//如果排队的请求还有，进入下一个请求的操作</span>
                 <span class="hljs-keyword">if</span> (i &lt; urls.length - <span class="hljs-number">1</span>) &#123;
                     <span class="hljs-keyword">return</span> queue(i + <span class="hljs-number">1</span>)
