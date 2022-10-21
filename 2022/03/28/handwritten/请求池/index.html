@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：2 个月前
                 
               </p>
             
@@ -374,7 +374,7 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
   <span class="hljs-built_in">console</span>.log(res);
 &#125;);
 </code></pre>
-<p>优化后的方法，urls使用的网络上的图片，更加直观</p>
+<p>urls使用的网络上的图片，更加直观</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">let</span> urls = [
         <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting1.png&quot;</span>,
         <span class="hljs-string">&quot;https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting2.png&quot;</span>,
@@ -401,11 +401,14 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
         &#125;);
     &#125;
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRequest</span>(<span class="hljs-params">urls,limit</span>) </span>&#123;
-      <span class="hljs-comment">//先拿出最大数量的请求放进请求池</span>
+        <span class="hljs-keyword">let</span> results = [];
+        <span class="hljs-comment">//先拿出最大数量的请求放进请求池</span>
         <span class="hljs-keyword">let</span> promises = urls.splice(<span class="hljs-number">0</span>, limit).map(<span class="hljs-function">(<span class="hljs-params">element, index</span>) =&gt;</span> &#123;
             <span class="hljs-keyword">return</span> loadImg(element).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+                results.push(res)
                 <span class="hljs-keyword">return</span> index;
             &#125;,<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
+              results.push(res)
               <span class="hljs-keyword">return</span> index;
             &#125;)
         &#125;);
@@ -414,32 +417,35 @@ createRequest(&#123; <span class="hljs-attr">list</span>: [p, p1, p2, p3, p4, p5
             <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.race(promises).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
               <span class="hljs-comment">//替换掉请求池中完成的一项</span>
                 promises[res] = loadImg(urls[i]).then(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span> &#123;
+                    results.push(_)
                     <span class="hljs-keyword">return</span> res;
                 &#125;,<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
+                  results.push(_)
                   <span class="hljs-keyword">return</span> res;
                 &#125;)
             &#125;,<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
               <span class="hljs-comment">//替换掉请求池中完成的一项</span>
                 promises[res] = loadImg(urls[i]).then(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span> &#123;
+                    results.push(_)
                     <span class="hljs-keyword">return</span> res;
                 &#125;,<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
+                  results.push(_)
                   <span class="hljs-keyword">return</span> res;
                 &#125;)
-            &#125;).finally(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
+            &#125;).then(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>&#123;
               <span class="hljs-comment">//如果排队的请求还有，进入下一个请求的操作</span>
                 <span class="hljs-keyword">if</span> (i &lt; urls.length - <span class="hljs-number">1</span>) &#123;
                     <span class="hljs-keyword">return</span> queue(i + <span class="hljs-number">1</span>)
                 &#125;<span class="hljs-keyword">else</span>&#123;
                 <span class="hljs-comment">//请求没有了，就使用all把最后三个直接全部结束</span>
-                    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.allSettled(promises);
+                    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.allSettled(promises).then(<span class="hljs-function"><span class="hljs-params">_</span>=&gt;</span>result);
                 &#125;
             &#125;);
-            <span class="hljs-comment">//返回值是最后三个请求的index值</span>
         &#125;
        <span class="hljs-keyword">return</span> queue(<span class="hljs-number">0</span>)
     &#125;
     createRequest(urls,<span class="hljs-number">3</span>).then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;请求结束&#x27;</span>)
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;请求结束&#x27;</span>,res)
     &#125;)</code></pre>
             </div>
             <hr>
