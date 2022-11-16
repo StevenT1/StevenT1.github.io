@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicont.png">
+  <link rel="icon" type="image/png" href="/img/favicont.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="秋坡博客">
+  <meta name="author" content="Taoqiupo">
+  <meta name="keywords" content="">
+  <title>webSocket - qiupoBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":50,"cursorChar":"🇨🇳","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').then(function (registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }).catch(function (err) {
+              console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+  }
+</script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>QiuPo'Park</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/moonbg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="webSocket">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Taoqiupo
+    </span>
+  
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">webSocket</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：几秒前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="webSocket"><a href="#webSocket" class="headerlink" title="webSocket"></a>webSocket</h2><p>HTML5 开始提供的一种浏览器与服务器进行全双工通讯的网络技术，属于应用层协议。它基于 TCP 传输协议，并复用 HTTP 的握手通道。<br>总而言之就是：</p>
+<ol>
+<li>可以在浏览器直接用</li>
+<li>支持双向通信</li>
+<li>性能好<h3 id="webSocket的连接"><a href="#webSocket的连接" class="headerlink" title="webSocket的连接"></a>webSocket的连接</h3>先看webSocket的</li>
+</ol>
+<p><strong>请求头信息</strong></p>
+<blockquote>
+<p>GET ws://ruims:123456@localhost:8080/?token=123123 HTTP/1.1<br>Host: localhost:8080<br>Connection: Upgrade<br>Pragma: no-cache<br>Cache-Control: no-cache<br>User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36<br>Upgrade: websocket<br>Origin: <a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000</a><br>Sec-WebSocket-Version: 13<br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9,en;q=0.8<br>Sec-WebSocket-Key: sXEi4SbUeCOsLZPsVA/nVQ==<br>Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits</p>
+</blockquote>
+<p>他是复用http请求的握手通道，借http请求到后服务端后，一脚踹开单向的http，升级协议成webSocket，之后后续的数据帧传输都是基于websocket协议。<br>其中</p>
+<ul>
+<li>Connection: Upgrade<br>表示要升级协议</li>
+<li>Upgrade: websocket<br>要升级什么协议</li>
+<li>Sec-WebSocket-Version: 13<br>表示websocket的版本</li>
+<li>Sec-WebSocket-Key: sXEi4SbUeCOsLZPsVA/nVQ==<br>提供基本防护能力的校验</li>
+</ul>
+<p><strong>服务器响应头</strong></p>
+<blockquote>
+<p>HTTP/1.1 101 Switching Protocols<br>Upgrade: websocket<br>Connection: Upgrade<br>Sec-WebSocket-Accept: /0ADGx6psxTUOpymObx+/Bm4GiQ=</p>
+</blockquote>
+<p>101就表明协议切换，Sec-WebSocket-Accept是Sec-WebSocket-Key计算出来的</p>
+<h3 id="websocket数据报文"><a href="#websocket数据报文" class="headerlink" title="websocket数据报文"></a>websocket数据报文</h3><p><a target="_blank" rel="noopener" href="https://proxy.qiupo.workers.dev/?https://raw.githubusercontent.com/qiupo/myImages/master/img/202211161533530.png">数据帧</a><br>其中关注的几个意义扫一下：</p>
+<ol>
+<li><strong>FIN</strong>：占据1个比特<br>如果是 1，表示这是消息（message）的最后一个分片（fragment），如果是 0，表示不是是消息（message）的最后一个分片（fragment）。</li>
+<li><strong>RSV1, RSV2, RSV3</strong>：各占 1 个比特。<br>一般情况下全为 0。当客户端、服务端协商采用 WebSocket 扩展时，这三个标志位可以非 0，且值的含义由扩展进行定义。如果出现非零的值，且并没有采用 WebSocket 扩展，连接出错。</li>
+<li><strong>pcode</strong>：4 个比特。<br>操作代码，Opcode 的值决定了应该如何解析后续的数据载荷（data payload）。如果操作代码是不认识的，那么接收端应该断开连接（fail the connection）。</li>
+</ol>
+<p>可选的操作代码如下：</p>
+<blockquote>
+<p>%x0：表示一个延续帧。当 Opcode 为 0 时，表示本次数据传输采用了数据分片，当前收到的数据帧为其中一个数据分片。</p>
+<p>%x1：表示这是一个文本帧（frame）</p>
+<p>%x2：表示这是一个二进制帧（frame）</p>
+<p>%x3-7：保留的操作代码，用于后续定义的非控制帧。</p>
+<p>%x8：表示连接断开。</p>
+<p>%x9：表示这是一个 ping 操作。</p>
+<p>%xA：表示这是一个 pong 操作。</p>
+<p>%xB-F：保留的操作代码，用于后续定义的控制帧。</p>
+</blockquote>
+<h3 id="心跳处理"><a href="#心跳处理" class="headerlink" title="心跳处理"></a>心跳处理</h3><p>WebSocket 为了保持客户端、服务端的实时双向通信，需要确保客户端、服务端之间的 TCP 通道保持连接没有断开。然而，对于长时间没有数据往来的连接，如果依旧长时间保持着，可能会浪费包括的连接资源。<br>这个时候，可以采用心跳来实现：<br>浏览器-&gt;服务器：ping</p>
+<p>服务器-&gt;浏览器：pong<br>ping、pong 的操作，对应的是 WebSocket 的两个控制帧，opcode 分别是 0x9、0xA。</p>
+<h3 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h3><p><strong>服务端</strong></p>
+<pre><code class="hljs javaScript"><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>)();
+<span class="hljs-keyword">var</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);
+<span class="hljs-keyword">var</span> server = http.Server(app);
+<span class="hljs-keyword">var</span> wsServer = http.createServer();
+<span class="hljs-keyword">var</span> &#123; WebSocketServer &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;ws&quot;</span>);
+<span class="hljs-keyword">var</span> wss = <span class="hljs-keyword">new</span> WebSocketServer(&#123;
+  <span class="hljs-attr">noServer</span>: <span class="hljs-literal">true</span>,
+&#125;);
+wsServer.on(<span class="hljs-string">&quot;upgrade&quot;</span>, <span class="hljs-function">(<span class="hljs-params">request, socket</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> keys = request;
+  <span class="hljs-comment">// 校验token</span>
+  <span class="hljs-keyword">if</span> (request.url.split(<span class="hljs-string">&quot;token=&quot;</span>)[<span class="hljs-number">1</span>] !== <span class="hljs-string">&quot;123123&quot;</span>) &#123;
+    socket.write(<span class="hljs-string">&quot;HTTP/1.1 401 Unauthorized\r\n\r\n&quot;</span>);
+    socket.destroy();
+    <span class="hljs-keyword">return</span>;
+  &#125;
+  <span class="hljs-comment">// 验证通过，继续建立连接</span>
+  wss.handleUpgrade(request, socket, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-function">(<span class="hljs-params">ws</span>) =&gt;</span> &#123;
+    wss.emit(<span class="hljs-string">&quot;connection&quot;</span>, ws, request);
+  &#125;);
+&#125;);
+wsServer.listen(<span class="hljs-number">8080</span>);
+wss.on(<span class="hljs-string">&quot;connection&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connection</span>(<span class="hljs-params">ws, req</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;server: receive connection.&quot;</span>);
+
+  ws.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">incoming</span>(<span class="hljs-params">message</span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;server: received: %s&quot;</span>, message);
+    ws.send(<span class="hljs-string">&quot;我已接收到&quot;</span> + message);
+  &#125;);
+
+  ws.on(<span class="hljs-string">&quot;pong&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;pong&quot;</span>);
+  &#125;);
+  
+  ws.on(<span class="hljs-string">&quot;close&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;客户端已断开连接&quot;</span>);
+  &#125;);
+&#125;);
+app.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;
+  res.sendfile(__dirname + <span class="hljs-string">&quot;/demo.html&quot;</span>);
+&#125;);
+
+app.listen(<span class="hljs-number">3000</span>);
+</code></pre>
+<p>此处服务器端通过http创建连接，通过<code>upgrade</code>去监听切换协议的事件，再次做一个校验工作，如果校验通过才emit告知socket进行连接，不然就停止切换协议。</p>
+<p><strong>客户端</strong></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;content&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;bt&quot;</span>&gt;</span>发送<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;token&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;123123&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;bt2&quot;</span>&gt;</span>重连<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;p&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span>
+<span class="javascript">    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">createWs</span> </span>&#123;</span>
+<span class="javascript">        <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">url</span>)</span> &#123;</span>
+<span class="javascript">            <span class="hljs-built_in">this</span>.ws = <span class="hljs-keyword">new</span> WebSocket(url);</span>
+<span class="javascript">            <span class="hljs-built_in">this</span>.ws.onopen = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;ws onopen&#x27;</span>);</span>
+<span class="javascript">            &#125;</span>
+<span class="javascript">            <span class="hljs-built_in">this</span>.ws.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</span>
+<span class="javascript">                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;ws onmessage&#x27;</span>, e);</span>
+<span class="javascript">                <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;p&#x27;</span>).innerHTML = e.data;</span>
+<span class="javascript">            &#125;;</span>
+<span class="javascript">            <span class="hljs-built_in">this</span>.ws.onclose = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">mevt</span>) </span>&#123;</span>
+<span class="javascript">                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;连接关闭&#x27;</span>, mevt)</span>
+<span class="javascript">            &#125;</span>
+<span class="javascript">            <span class="hljs-built_in">this</span>.ws.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>)</span>&#123;</span>
+<span class="javascript">                alert(<span class="hljs-string">&#x27;校验错误&#x27;</span>);</span>
+<span class="javascript">            &#125;</span>
+<span class="javascript">        &#125;</span>
+<span class="javascript">    &#125;</span>
+<span class="javascript">    <span class="hljs-keyword">let</span> ws = (<span class="hljs-keyword">new</span> createWs(<span class="hljs-string">&#x27;ws://ruims:123456@localhost:8080?token=&#x27;</span> + <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;token&#x27;</span>).value)).ws;</span>
+<span class="javascript">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;bt&#x27;</span>).addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;</span>
+<span class="javascript">        <span class="hljs-keyword">let</span> message = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;content&#x27;</span>).value;</span>
+<span class="javascript">        ws.send(message);</span>
+<span class="javascript">    &#125;)</span>
+<span class="javascript">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;bt2&#x27;</span>).addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;</span>
+<span class="javascript">        ws.close();</span>
+<span class="javascript">        <span class="hljs-keyword">let</span> token = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;token&#x27;</span>).value;</span>
+<span class="javascript">        ws = (<span class="hljs-keyword">new</span> createWs(<span class="hljs-string">&#x27;ws://ruims:123456@localhost:8080?token=&#x27;</span> + token)).ws;</span>
+<span class="javascript">    &#125;)</span>
+<span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>客户端将webSocket包装起来，然后可做多次重连</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/http/">http</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/16/node/node%E9%A2%98%E7%9B%AE/">
+                        <span class="hidden-mobile">Node题目汇总</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/gitalk/1.7.0/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '8f98ceef01e007ac7806',
+          clientSecret: '540e33bc89ad84865b78f7bf9844f7bb11545d5f',
+          repo: 'qiupo.github.io',
+          owner: 'qiupo',
+          admin: ["qiupo"],
+          id: '9fa4b87788fc01a9d7dc0c318d8ee720',
+          language: 'zh-CN',
+          labels: ["comment"],
+          perPage: 10,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false,
+          proxy: 'https://proxy.qiupo.workers.dev/?https://github.com/login/oauth/access_token',
+        });
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener"></a>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/mermaid/8.8.2/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
